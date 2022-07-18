@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Card, Layout, Text, Icon, useTheme} from '@ui-kitten/components';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = props => {
   const theme = useTheme();
@@ -127,34 +128,51 @@ const Footer = props => {
 };
 
 export const LessonBreakCard = props => {
+  const navigation = useNavigation();
+  const navigateSchoolBells = () => {
+    navigation.navigate('Życie szkoły', {screen: 'Dzwonki'});
+  };
+
   const number = props.data.number;
   if (parseInt(number, 10) !== -1) {
     return (
       <React.Fragment>
-        <Layout style={styles.topContainer} level="1">
-          {props.data.isShortLessons ? (
-            <Card
-              style={styles.card}
-              header={<Header data={props.data} />}
-              footer={<Footer data={props.data} />}>
-              <Body data={props.data} />
-            </Card>
-          ) : (
-            <Card style={styles.card} header={<Header data={props.data} />}>
-              <Body data={props.data} />
-            </Card>
-          )}
-        </Layout>
+        <TouchableOpacity
+          style={styles.topContainer}
+          onPress={() => navigateSchoolBells()}>
+          <Layout style={{width: '100%'}} level="1">
+            {props.data.isShortLessons ? (
+              <Card
+                disabled={true}
+                style={styles.card}
+                header={<Header data={props.data} />}
+                footer={<Footer data={props.data} />}>
+                <Body data={props.data} />
+              </Card>
+            ) : (
+              <Card
+                style={styles.card}
+                disabled={true}
+                header={<Header data={props.data} />}>
+                <Body data={props.data} />
+              </Card>
+            )}
+          </Layout>
+        </TouchableOpacity>
       </React.Fragment>
     );
   } else {
     return (
       <React.Fragment>
-        <Layout style={styles.topContainer} level="1">
-          <Card style={styles.card} header={Header}>
-            <Text>Miłego wypoczynku!</Text>
-          </Card>
-        </Layout>
+        <TouchableOpacity
+          style={styles.topContainer}
+          onPress={() => navigateSchoolBells()}>
+          <Layout style={{width: '100%'}} level="1">
+            <Card style={styles.card} disabled={true} header={Header}>
+              <Text>Miłego wypoczynku!</Text>
+            </Card>
+          </Layout>
+        </TouchableOpacity>
       </React.Fragment>
     );
   }

@@ -10,7 +10,7 @@ import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const StoryDetailsScreen = ({navigation}) => {
+export const SubstitutionsScreen = ({navigation}) => {
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -22,13 +22,13 @@ export const StoryDetailsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <TopNavigation
-        title="Story"
+        title="Zastępstwa"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">Details</Text>
+        <Text category="h1">Zastępstwa</Text>
       </Layout>
     </SafeAreaView>
   );

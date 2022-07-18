@@ -7,7 +7,6 @@ import {
 
 import {HomeScreen} from '../screens/HomeScreen';
 import React from 'react';
-import {StoryDetailsScreen} from '../screens/StoryDetailsScreen';
 import {NewsScreen} from '../screens/NewsScreen';
 import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -35,13 +34,8 @@ export const BottomTabsNavigator = () => (
       options={{headerShown: false}}
     />
     <Screen
-      name="Videos"
+      name="Aktualności"
       component={NewsScreen}
-      options={{headerShown: false}}
-    />
-    <Screen
-      name="Details"
-      component={StoryDetailsScreen}
       options={{headerShown: false}}
     />
   </Navigator>

@@ -74,9 +74,6 @@ export const HomeScreen = () => {
   //TODO: przenieść do ustawień razem z guzikiem
   // const themeContext = React.useContext(ThemeContext);
   const navigation = useNavigation();
-  // const navigateDetails = () => {
-  //   navigation.navigate('Details');
-  // };
 
   const renderDrawerAction = () => (
     <TopNavigationAction

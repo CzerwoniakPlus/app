@@ -20,3 +20,10 @@ export const CarIcon = style => <Icon {...style} name="car-outline" />;
 export const SettingsIcon = style => (
   <Icon {...style} name="settings-2-outline" />
 );
+export const ClockIcon = style => <Icon {...style} name="clock-outline" />;
+export const CalendarIcon = style => (
+  <Icon {...style} name="calendar-outline" />
+);
+export const ClipboardIcon = style => (
+  <Icon {...style} name="clipboard-outline" />
+);

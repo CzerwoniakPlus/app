@@ -22,13 +22,13 @@ export const SettingsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <TopNavigation
-        title="Register"
+        title="Ustawienia"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">Register</Text>
+        <Text category="h1">Ustawienia</Text>
       </Layout>
     </SafeAreaView>
   );

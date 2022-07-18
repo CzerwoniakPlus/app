@@ -27,6 +27,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import { SchoolNewsBottomTabsNavigator } from './SchoolNewsBottomTabsNavigator';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -90,7 +91,7 @@ export const HomeDrawerNavigator = () => {
       />
       <Screen
         name="Życie szkoły"
-        component={SchoolLifeScreen}
+        component={SchoolNewsBottomTabsNavigator}
         options={{headerShown: false}}
       />
       <Screen

@@ -10,7 +10,7 @@ import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const SchoolLifeScreen = ({navigation}) => {
+export const SchoolBellsScreen = ({navigation}) => {
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -22,13 +22,13 @@ export const SchoolLifeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <TopNavigation
-        title="Plan lekcji"
+        title="Dzwonki"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">Plan lekcji</Text>
+        <Text category="h1">Dzwonki</Text>
       </Layout>
     </SafeAreaView>
   );

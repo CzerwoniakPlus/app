@@ -14,6 +14,14 @@ const Header = props => {
   );
 };
 
+const Footer = props => {
+  return (
+    <View {...props} style={[props.style, styles.footerContainer]}>
+      <Text category="c1">Dotknij, aby otworzyć artykuł w przeglądarce</Text>
+    </View>
+  );
+};
+
 export const NewsCard = props => {
   const handleTouch = url => {
     Linking.openURL(url);
@@ -28,7 +36,8 @@ export const NewsCard = props => {
             <Card
               disabled={true}
               style={styles.card}
-              header={<Header data={news} />}>
+              header={<Header data={news} />}
+              footer={Footer}>
               <Text>{news.content}</Text>
             </Card>
           </Layout>
