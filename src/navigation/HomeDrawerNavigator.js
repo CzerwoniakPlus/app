@@ -27,7 +27,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { SchoolNewsBottomTabsNavigator } from './SchoolNewsBottomTabsNavigator';
+import {SchoolLifeBottomTabsNavigator} from './SchoolLifeBottomTabsNavigator';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -62,7 +62,9 @@ const DrawerContent = ({navigation, state}) => {
         />
         <DrawerItem
           title="Facebook ZS1"
-          onPress={() => Linking.openURL('https://www.facebook.com/ZS1Czerwoniak')}
+          onPress={() =>
+            Linking.openURL('https://www.facebook.com/ZS1Czerwoniak')
+          }
         />
         <DrawerItem
           title="Dziennik elektroniczny"
@@ -91,7 +93,7 @@ export const HomeDrawerNavigator = () => {
       />
       <Screen
         name="Życie szkoły"
-        component={SchoolNewsBottomTabsNavigator}
+        component={SchoolLifeBottomTabsNavigator}
         options={{headerShown: false}}
       />
       <Screen

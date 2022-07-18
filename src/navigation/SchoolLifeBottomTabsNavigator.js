@@ -27,7 +27,7 @@ const BottomTabBar = ({navigation, state}) => (
   </View>
 );
 
-export const SchoolNewsBottomTabsNavigator = () => (
+export const SchoolLifeBottomTabsNavigator = () => (
   <Navigator tabBar={props => <BottomTabBar {...props} />}>
     <Screen
       name="Plan lekcji"
