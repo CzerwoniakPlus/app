@@ -30,6 +30,7 @@ export const SchoolBellsScreen = ({navigation}) => {
       let bellCache = await AsyncStorage.getItem('bellCache');
       if (bellCache != null) {
         jsonResponse = JSON.parse(bellCache);
+        jsonResponse = {...jsonResponse, disconnected: true};
       } else {
         jsonResponse = {
           disconnected: true,
