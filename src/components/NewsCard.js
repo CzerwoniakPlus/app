@@ -1,12 +1,12 @@
 import React from 'react';
 import {Linking, StyleSheet, View, TouchableOpacity} from 'react-native';
-import {Card, Layout, Text, Icon, useTheme} from '@ui-kitten/components';
+import {Card, Layout, Text} from '@ui-kitten/components';
 
 const Header = props => {
   return (
     <View {...props}>
-      <View style={{flexDirection: 'row', marginLeft: -10}}>
-        <Text category="h6" style={{marginLeft: 5}}>
+      <View style={styles.headerTextView}>
+        <Text category="h6" style={styles.headerText}>
           {props.data.title}
         </Text>
       </View>
@@ -32,7 +32,7 @@ export const NewsCard = props => {
         <TouchableOpacity
           style={styles.topContainer}
           onPress={() => handleTouch(news.link)}>
-          <Layout style={{width: '100%'}} level="1" key={index}>
+          <Layout style={styles.fullWidthLayout} level="1" key={index}>
             <Card
               disabled={true}
               style={styles.card}
@@ -72,5 +72,15 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
+  },
+  fullWidthLayout: {
+    width: '100%',
   },
 });

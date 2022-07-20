@@ -6,14 +6,14 @@ const Header = props => {
   const theme = useTheme();
   return (
     <View {...props}>
-      <View style={{flex: 1, flexDirection: 'row', marginLeft: -10}}>
+      <View style={styles.headerTextView}>
         <Icon
           name="bell-outline"
           fill={theme['text-basic-color']}
           width={24}
           height={24}
         />
-        <Text category="h6" style={{marginLeft: 5}}>
+        <Text category="h6" style={styles.headerText}>
           Ogłoszenie
         </Text>
       </View>
@@ -68,5 +68,13 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
   },
 });

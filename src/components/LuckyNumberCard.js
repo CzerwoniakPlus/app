@@ -6,14 +6,14 @@ const Header = props => {
   const theme = useTheme();
   return (
     <View {...props}>
-      <View style={{flexDirection: 'row', marginLeft: -10}}>
+      <View style={styles.headerTextView}>
         <Icon
           name="info-outline"
           fill={theme['text-basic-color']}
           width={24}
           height={24}
         />
-        <Text category="h6" style={{marginLeft: 5}}>
+        <Text category="h6" style={styles.headerText}>
           Szczęśliwy numerek
         </Text>
       </View>
@@ -29,10 +29,7 @@ export const LuckyNumberCard = props => {
         <Layout style={styles.topContainer} level="1">
           <Card style={styles.card} header={Header}>
             <Text>{props.data.info}</Text>
-            <Text
-              style={{fontSize: 20, fontWeight: 'bold', textAlign: 'right', marginTop: 10}}>
-              {props.data.number}
-            </Text>
+            <Text style={styles.luckyNumberText}>{props.data.number}</Text>
           </Card>
         </Layout>
       </React.Fragment>
@@ -47,7 +44,7 @@ export const LuckyNumberCard = props => {
         </Layout>
       </React.Fragment>
     );
-  } 
+  }
 };
 
 const styles = StyleSheet.create({
@@ -76,5 +73,18 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
+  },
+  luckyNumberText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    marginTop: 10,
   },
 });

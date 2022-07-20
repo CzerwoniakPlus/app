@@ -9,14 +9,14 @@ const Header = props => {
     case 'Lekcja':
       return (
         <View {...props}>
-          <View style={{flexDirection: 'row', marginLeft: -10}}>
+          <View style={styles.headerTextView}>
             <Icon
               name="clock-outline"
               fill={theme['text-basic-color']}
               width={24}
               height={24}
             />
-            <Text category="h6" style={{marginLeft: 5}}>
+            <Text category="h6" style={styles.headerText}>
               Lekcja {props.data.number}
             </Text>
           </View>
@@ -25,14 +25,14 @@ const Header = props => {
     case 'Przerwa':
       return (
         <View {...props}>
-          <View style={{flexDirection: 'row', marginLeft: -10}}>
+          <View style={styles.headerTextView}>
             <Icon
               name="clock-outline"
               fill={theme['text-basic-color']}
               width={24}
               height={24}
             />
-            <Text category="h6" style={{marginLeft: 5}}>
+            <Text category="h6" style={styles.headerText}>
               Przerwa {props.data.number}
             </Text>
           </View>
@@ -41,14 +41,14 @@ const Header = props => {
     case 'afternoon':
       return (
         <View {...props}>
-          <View style={{flexDirection: 'row', marginLeft: -10}}>
+          <View style={styles.headerTextView}>
             <Icon
               name="clock-outline"
               fill={theme['text-basic-color']}
               width={24}
               height={24}
             />
-            <Text category="h6" style={{marginLeft: 5}}>
+            <Text category="h6" style={styles.headerText}>
               Koniec lekcji
             </Text>
           </View>
@@ -57,14 +57,14 @@ const Header = props => {
     case 'evening':
       return (
         <View {...props}>
-          <View style={{flexDirection: 'row', marginLeft: -10}}>
+          <View style={styles.headerTextView}>
             <Icon
               name="clock-outline"
               fill={theme['text-basic-color']}
               width={24}
               height={24}
             />
-            <Text category="h6" style={{marginLeft: 5}}>
+            <Text category="h6" style={styles.headerText}>
               Koniec lekcji
             </Text>
           </View>
@@ -73,14 +73,14 @@ const Header = props => {
     case 'morning':
       return (
         <View {...props}>
-          <View style={{flexDirection: 'row', marginLeft: -10}}>
+          <View style={styles.headerTextView}>
             <Icon
               name="clock-outline"
               fill={theme['text-basic-color']}
               width={24}
               height={24}
             />
-            <Text category="h6" style={{marginLeft: 5}}>
+            <Text category="h6" style={styles.headerText}>
               Smacznej kawusi ☕
             </Text>
           </View>
@@ -113,11 +113,7 @@ const Footer = props => {
   if (props.data.isShortLessons) {
     isShortLessons = (
       <View {...props} style={[props.style, styles.footerContainer]}>
-        <Text
-          category="c1"
-          style={{
-            textAlign: 'right',
-          }}>
+        <Text category="c1" style={styles.shortLessonsText}>
           Lekcje skrócone 🥳
         </Text>
       </View>
@@ -140,7 +136,7 @@ export const LessonBreakCard = props => {
         <TouchableOpacity
           style={styles.topContainer}
           onPress={() => navigateSchoolBells()}>
-          <Layout style={{width: '100%'}} level="1">
+          <Layout style={styles.fullWidthLayout} level="1">
             {props.data.isShortLessons ? (
               <Card
                 disabled={true}
@@ -167,7 +163,7 @@ export const LessonBreakCard = props => {
         <TouchableOpacity
           style={styles.topContainer}
           onPress={() => navigateSchoolBells()}>
-          <Layout style={{width: '100%'}} level="1">
+          <Layout style={styles.fullWidthLayout} level="1">
             <Card style={styles.card} disabled={true} header={Header}>
               <Text>Miłego wypoczynku!</Text>
             </Card>
@@ -204,5 +200,18 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
+  },
+  shortLessonsText: {
+    textAlign: 'right',
+  },
+  fullWidthLayout: {
+    width: '100%',
   },
 });

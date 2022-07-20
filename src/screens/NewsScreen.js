@@ -2,7 +2,6 @@ import {MenuIcon} from '../assets/icons';
 import {
   Divider,
   Layout,
-  Text,
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';

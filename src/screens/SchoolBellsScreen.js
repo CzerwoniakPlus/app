@@ -1,7 +1,6 @@
 import {
   Divider,
   Layout,
-  Text,
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';
@@ -12,7 +11,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ScrollView, RefreshControl, StyleSheet} from 'react-native';
 import {LessonHoursCard} from '../components/LessonHoursCard';
-import { SchoolCalendarCard } from '../components/SchoolCalendarCard';
+import {SchoolCalendarCard} from '../components/SchoolCalendarCard';
 
 export const SchoolBellsScreen = ({navigation}) => {
   const [isRefreshing, setRefreshing] = React.useState(false);

@@ -13,14 +13,14 @@ const Header = props => {
   const theme = useTheme();
   return (
     <View {...props}>
-      <View style={{flex: 1, flexDirection: 'row', marginLeft: -10}}>
+      <View style={styles.headerTextView}>
         <Icon
           name="calendar-outline"
           fill={theme['text-basic-color']}
           width={24}
           height={24}
         />
-        <Text category="h6" style={{marginLeft: 5}}>
+        <Text category="h6" style={styles.headerText}>
           Kalendarz roku szkolnego
         </Text>
       </View>
@@ -48,14 +48,14 @@ export const SchoolCalendarCard = props => {
             dymek z informacją o nazwie oraz liczbie dni pozostałych do
             wskazanej daty.
           </Text>
-          <Layout style={{alignItems: 'center', justifyContent: 'center'}}>
+          <Layout style={styles.buttonLayout}>
             <Button
               onPress={() =>
                 Linking.openURL(
                   'https://www.kalendarzswiat.pl/kalendarz_szkolny/',
                 )
               }
-              style={{marginTop: 20}}>
+              style={styles.button}>
               Kalendarz roku szkolnego
             </Button>
           </Layout>
@@ -89,5 +89,20 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
+  },
+  buttonLayout: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    marginTop: 20,
   },
 });

@@ -7,14 +7,14 @@ const Header = props => {
   const theme = useTheme();
   return (
     <View {...props}>
-      <View style={{flexDirection: 'row', marginLeft: -10}}>
+      <View style={styles.headerTextView}>
         <Icon
           name="sun-outline"
           fill={theme['text-basic-color']}
           width={24}
           height={24}
         />
-        <Text category="h6" style={{marginLeft: 5}}>
+        <Text category="h6" style={styles.headerText}>
           Wakacje
         </Text>
       </View>
@@ -30,18 +30,12 @@ export const VacationCard = props => {
         <Layout style={styles.topContainer} level="1">
           <Card style={styles.card} header={Header}>
             <Text>Do wakacji pozostało jeszcze</Text>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                textAlign: 'right',
-                marginTop: 10,
-              }}>
+            <Text style={styles.vacationTimeRemainingText}>
               {props.data.daysLeft} dni
             </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.progressBarView}>
               <Progress.Bar
-                style={{marginTop: 10, width: '100%'}}
+                style={styles.progressBar}
                 progress={props.data.procent}
                 height={15}
                 color="#41C655"
@@ -102,5 +96,25 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: 'right',
+  },
+  headerTextView: {
+    flexDirection: 'row',
+    marginLeft: -10,
+  },
+  headerText: {
+    marginLeft: 5,
+  },
+  vacationTimeRemainingText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    marginTop: 10,
+  },
+  progressBarView: {
+    flexDirection: 'row',
+  },
+  progressBar: {
+    marginTop: 10,
+    width: '100%',
   },
 });

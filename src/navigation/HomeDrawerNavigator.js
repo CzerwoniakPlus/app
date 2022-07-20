@@ -15,18 +15,13 @@ import {
   CarIcon,
   SettingsIcon,
 } from '../assets/icons';
-import {SchoolLifeScreen} from '../screens/SchoolLifeScreen';
 import {BottomTabsNavigator} from './BottomTabsNavigator';
 import {PublicTransportScreen} from '../screens/PublicTransportScreen';
 import React from 'react';
 import {SettingsScreen} from '../screens/SettingsScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Linking} from 'react-native';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SchoolLifeBottomTabsNavigator} from './SchoolLifeBottomTabsNavigator';
 
 const {Navigator, Screen} = createDrawerNavigator();
