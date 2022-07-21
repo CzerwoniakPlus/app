@@ -62,8 +62,17 @@ export const HomeScreen = () => {
   };
 
   useEffect(() => {
+    //onComponentMount
     setRefreshing(true);
     getHomeData();
+    const refreshInterval = setInterval(() => {
+      setRefreshing(true);
+      getHomeData();
+    }, 30000);
+    //onComponentUnmount
+    return () => {
+      clearInterval(refreshInterval);
+    };
   }, []);
 
   const onRefresh = React.useCallback(() => {
@@ -71,8 +80,6 @@ export const HomeScreen = () => {
     getHomeData();
   }, []);
 
-  //TODO: przenieść do ustawień razem z guzikiem
-  // const themeContext = React.useContext(ThemeContext);
   const navigation = useNavigation();
 
   const renderDrawerAction = () => (
@@ -112,15 +119,6 @@ export const HomeScreen = () => {
             </Layout>
           </Layout>
           {apiHomeData ? <LessonBreakCard data={apiHomeData.lesson} /> : null}
-          {
-            //TODO: Przenieść theme do ustawień
-            /* <Button
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{marginVertical: 4}}
-            onPress={themeContext.toggleTheme}>
-            TOGGLE THEME
-            </Button> */
-          }
           <Layout style={styles.spacer} />
         </ScrollView>
       </Layout>
