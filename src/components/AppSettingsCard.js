@@ -32,17 +32,26 @@ const Header = props => {
 
 export const AppSettingsCard = props => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
+  const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(true);
   const themeContext = React.useContext(ThemeContext);
 
   React.useEffect(() => {
     setUsingDarkMode(props.usingDarkMode);
-  }, [props.usingDarkMode]);
+    setAutoRefreshAllowed(props.autoRefreshAllowed);
+  }, [props.usingDarkMode, props.autoRefreshAllowed]);
 
   const toggleTheme = () => {
     themeContext.toggleTheme();
     const nextTheme = usingDarkMode ? 'light' : 'dark';
     setUsingDarkMode(!usingDarkMode);
     AsyncStorage.setItem('theme', nextTheme);
+  };
+
+  const toggleAutoRefresh = async () => {
+    console.warn('currentStatus: ', autoRefreshAllowed, 'status changed to: ', !autoRefreshAllowed);
+    const nextAutoRefreshAllowed = autoRefreshAllowed ? 'false' : 'true';
+    await AsyncStorage.setItem('isAutorefreshAllowed', nextAutoRefreshAllowed);
+    setAutoRefreshAllowed(!autoRefreshAllowed);
   };
 
   return (
@@ -55,7 +64,7 @@ export const AppSettingsCard = props => {
           </Layout>
           <Layout style={[styles.topContainer, {marginBottom: 20}]} level="1">
             <Text>Autoodświeżanie ekranu głównego</Text>
-            <Toggle />
+            <Toggle checked={autoRefreshAllowed} onChange={toggleAutoRefresh} />
           </Layout>
 
           <Text>Przystanek domowy KM</Text>

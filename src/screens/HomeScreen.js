@@ -7,7 +7,12 @@ import {
 import {MenuIcon} from '../assets/icons';
 import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useNavigation, DrawerActions} from '@react-navigation/native';
+import {
+  useNavigation,
+  DrawerActions,
+  useIsFocused,
+  useFocusEffect,
+} from '@react-navigation/native';
 import {ImportantInfoCard} from '../components/ImportantInfoCard';
 import {ScrollView, RefreshControl, StyleSheet} from 'react-native';
 import {LuckyNumberCard} from '../components/LuckyNumberCard';
@@ -18,6 +23,9 @@ import {LessonBreakCard} from '../components/LessonBreakCard';
 export const HomeScreen = () => {
   const [apiHomeData, setApiHomeData] = React.useState(null);
   const [isRefreshing, setRefreshing] = React.useState(false);
+  const isFocused = useIsFocused();
+  const [refreshInterval, setRefreshInterval] = React.useState(0);
+  const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(null);
 
   const getHomeData = async () => {
     let jsonResponse;
@@ -61,19 +69,57 @@ export const HomeScreen = () => {
     }
   };
 
+  const checkAutoRefreshAllowed = async () => {
+    let isAutoRefreshAllowed = await AsyncStorage.getItem(
+      'isAutorefreshAllowed',
+    );
+    if (isAutoRefreshAllowed != null) {
+      const isTrueSet = isAutoRefreshAllowed === 'true';
+      if (isTrueSet) {
+        setAutoRefreshAllowed(true);
+      } else {
+        setAutoRefreshAllowed(false);
+      }
+    } else {
+      AsyncStorage.setItem('isAutorefreshAllowed', 'true');
+      setAutoRefreshAllowed(true);
+    }
+  };
+
   useEffect(() => {
-    //onComponentMount
     setRefreshing(true);
     getHomeData();
-    const refreshInterval = setInterval(() => {
-      setRefreshing(true);
-      getHomeData();
-    }, 30000);
-    //onComponentUnmount
-    return () => {
-      clearInterval(refreshInterval);
-    };
   }, []);
+  useEffect(() => {
+    (async () => {
+      if (isFocused) {
+        await checkAutoRefreshAllowed();
+      }
+    })();
+  }, [isFocused]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      (async () => {
+        clearInterval(refreshInterval);
+        if (autoRefreshAllowed) {
+          const interval = setInterval(() => {
+            setRefreshing(true);
+            getHomeData();
+          }, 30000);
+          setRefreshInterval(interval);
+        }
+      })();
+    }, [autoRefreshAllowed, refreshInterval]),
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        clearInterval(refreshInterval);
+      };
+    }, [refreshInterval]),
+  );
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

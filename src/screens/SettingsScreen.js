@@ -13,10 +13,15 @@ import {AppSettingsCard} from '../components/AppSettingsCard';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
+  const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(true);
 
   React.useEffect(() => {
-    getSavedTheme();
-  }, []);
+    const focusHandler = navigation.addListener('focus', () => {
+      getSavedTheme();
+      checkAutoRefreshAllowed();
+    });
+    return focusHandler;
+  }, [navigation]);
 
   const getSavedTheme = () => {
     AsyncStorage.getItem('theme')
@@ -24,6 +29,24 @@ export const SettingsScreen = ({navigation}) => {
         savedTheme === 'dark'
           ? setUsingDarkMode(true)
           : setUsingDarkMode(false);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const checkAutoRefreshAllowed = () => {
+    AsyncStorage.getItem('isAutorefreshAllowed')
+      .then(isAutoRefreshAllowed => {
+        if (isAutoRefreshAllowed != null) {
+          const isTrueSet = isAutoRefreshAllowed === 'true';
+          isTrueSet === true
+            ? setAutoRefreshAllowed(true)
+            : setAutoRefreshAllowed(false);
+        } else {
+          setAutoRefreshAllowed(true);
+          AsyncStorage.setItem('isAutorefreshAllowed', 'true');
+        }
       })
       .catch(err => {
         console.log(err);
@@ -48,7 +71,10 @@ export const SettingsScreen = ({navigation}) => {
       <Divider />
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
-          <AppSettingsCard usingDarkMode={usingDarkMode} />
+          <AppSettingsCard
+            usingDarkMode={usingDarkMode}
+            autoRefreshAllowed={autoRefreshAllowed}
+          />
           <Layout style={styles.spacer} />
         </ScrollView>
       </Layout>
