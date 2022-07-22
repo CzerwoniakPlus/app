@@ -48,7 +48,6 @@ export const AppSettingsCard = props => {
   };
 
   const toggleAutoRefresh = async () => {
-    console.warn('currentStatus: ', autoRefreshAllowed, 'status changed to: ', !autoRefreshAllowed);
     const nextAutoRefreshAllowed = autoRefreshAllowed ? 'false' : 'true';
     await AsyncStorage.setItem('isAutorefreshAllowed', nextAutoRefreshAllowed);
     setAutoRefreshAllowed(!autoRefreshAllowed);

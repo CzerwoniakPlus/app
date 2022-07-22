@@ -104,7 +104,6 @@ export const HomeScreen = () => {
         clearInterval(refreshInterval);
         if (autoRefreshAllowed) {
           const interval = setInterval(() => {
-            console.warn('refreshing');
             setRefreshing(true);
             getHomeData();
           }, 30000);
