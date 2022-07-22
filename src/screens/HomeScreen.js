@@ -104,13 +104,15 @@ export const HomeScreen = () => {
         clearInterval(refreshInterval);
         if (autoRefreshAllowed) {
           const interval = setInterval(() => {
+            console.warn('refreshing');
             setRefreshing(true);
             getHomeData();
           }, 30000);
           setRefreshInterval(interval);
         }
       })();
-    }, [autoRefreshAllowed, refreshInterval]),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [autoRefreshAllowed, isFocused]),
   );
 
   useFocusEffect(
@@ -118,7 +120,8 @@ export const HomeScreen = () => {
       return () => {
         clearInterval(refreshInterval);
       };
-    }, [refreshInterval]),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [refreshInterval, isFocused]),
   );
 
   const onRefresh = React.useCallback(() => {
