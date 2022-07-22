@@ -14,6 +14,8 @@ import {LogBox} from 'react-native';
 export default () => {
   LogBox.ignoreLogs([
     'You need to specify name or key when calling navigate with an object as the argument',
+    'Found screens with the same name nested inside one another',
+    'Stack Navigator: \'headerMode="none"\' is deprecated.',
   ]);
   const [theme, setTheme] = React.useState('light');
 
