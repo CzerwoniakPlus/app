@@ -86,6 +86,22 @@ const Header = props => {
           </View>
         </View>
       );
+    case 'weekend':
+      return (
+        <View {...props}>
+          <View style={styles.headerTextView}>
+            <Icon
+              name="clock-outline"
+              fill={theme['text-basic-color']}
+              width={24}
+              height={24}
+            />
+            <Text category="h6" style={styles.headerText}>
+              Weekend 🎉
+            </Text>
+          </View>
+        </View>
+      );
     default:
       break;
   }
@@ -103,6 +119,8 @@ const Body = props => {
       return <Text>Dobranoc 😴</Text>;
     case 'morning':
       return <Text>Pozostało {props.data.timeLeft} do 1 lekcji</Text>;
+    case 'weekend':
+      return <Text>Miłego weekendu!</Text>;
     default:
       break;
   }
