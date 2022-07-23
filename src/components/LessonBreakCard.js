@@ -136,7 +136,6 @@ const Footer = props => {
         </Text>
       </View>
     );
-    // isShortLessons = <Text category="c1"></Text>;
   }
   return isShortLessons;
 };
