@@ -31,6 +31,7 @@ export const NewsCard = props => {
       <React.Fragment>
         <TouchableOpacity
           style={styles.topContainer}
+          activeOpacity={0.95}
           onPress={() => handleTouch(news.link)}>
           <Layout style={styles.fullWidthLayout} level="1" key={index}>
             <Card
@@ -51,7 +52,6 @@ export const NewsCard = props => {
 const styles = StyleSheet.create({
   topContainer: {
     justifyContent: 'space-between',
-    flex: 1,
     width: '100%',
   },
   card: {

@@ -24,6 +24,9 @@ node_modules/react-native/flow/
 
 [options]
 emoji=true
+module.name_mapper='^react-native$' -> 'react-native-web'
+module.system.node.main_field=module
+module.system.node.main_field=main
 
 exact_by_default=true
 

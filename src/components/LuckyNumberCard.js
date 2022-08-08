@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
+    width: '100%',
   },
   card: {
     flex: 1,

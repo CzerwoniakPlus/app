@@ -19,6 +19,7 @@ import {LuckyNumberCard} from '../components/LuckyNumberCard';
 import {VacationCard} from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LessonBreakCard} from '../components/LessonBreakCard';
+import { View } from 'react-native-web';
 
 export const HomeScreen = () => {
   const [apiHomeData, setApiHomeData] = React.useState(null);
@@ -146,6 +147,7 @@ export const HomeScreen = () => {
       />
       <Divider />
       <Layout style={styles.mainLayout}>
+        <View style={{flex: 1}}>
         <ScrollView
           contentContainerStyle={styles.cardScrollView}
           refreshControl={
@@ -169,6 +171,7 @@ export const HomeScreen = () => {
           {apiHomeData ? <LessonBreakCard data={apiHomeData.lesson} /> : null}
           <Layout style={styles.spacer} />
         </ScrollView>
+        </View>
       </Layout>
     </SafeAreaView>
   );
@@ -188,6 +191,7 @@ const styles = StyleSheet.create({
   rowLayout: {
     flex: 1,
     flexDirection: 'row',
+    width: "100%",
   },
   flex: {
     flex: 1,

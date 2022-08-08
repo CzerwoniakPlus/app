@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
 import {StyleSheet, ScrollView, RefreshControl} from 'react-native';
 import {NewsCard} from '../components/NewsCard';
+import { View } from 'react-native-web';
 
 export const NewsScreen = () => {
   const [isRefreshing, setRefreshing] = React.useState(false);
@@ -72,7 +73,7 @@ export const NewsScreen = () => {
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
-      <Layout style={styles.mainLayout}>
+      {/* <Layout style={styles.mainLayout}> */}
         <ScrollView
           contentContainerStyle={styles.cardScrollView}
           refreshControl={
@@ -81,7 +82,7 @@ export const NewsScreen = () => {
           {apiSchoolNewsData ? <NewsCard data={apiSchoolNewsData} /> : null}
           <Layout style={styles.spacer} />
         </ScrollView>
-      </Layout>
+      {/* </Layout> */}
     </SafeAreaView>
   );
 };
