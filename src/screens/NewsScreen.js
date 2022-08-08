@@ -4,6 +4,7 @@ import {
   // Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
 
 import React from 'react';
@@ -16,6 +17,8 @@ import {RefreshControl} from 'react-native-web-refresh-control';
 import {NewsCard} from '../components/NewsCard';
 
 export const NewsScreen = () => {
+  const theme = useTheme();
+
   const [isRefreshing, setRefreshing] = React.useState(false);
   const [apiSchoolNewsData, setApiSchoolNewsData] = React.useState(null);
 
@@ -66,7 +69,11 @@ export const NewsScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.mainView,
+        {backgroundColor: theme['background-basic-color-1']},
+      ]}>
       <TopNavigation
         title="Aktualności"
         alignment="center"
