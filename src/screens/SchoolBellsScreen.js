@@ -9,7 +9,8 @@ import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ScrollView, RefreshControl, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
 import {LessonHoursCard} from '../components/LessonHoursCard';
 import {SchoolCalendarCard} from '../components/SchoolCalendarCard';
 

@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   topContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
   card: {
     flex: 1,
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   headerTextView: {
-    flex: 1,
     flexDirection: 'row',
     marginLeft: -10,
   },

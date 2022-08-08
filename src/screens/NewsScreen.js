@@ -1,9 +1,10 @@
 import {MenuIcon} from '../assets/icons';
 import {
   Divider,
-  Layout,
+  // Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
 
 import React from 'react';
@@ -11,10 +12,13 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
-import {StyleSheet, ScrollView, RefreshControl} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
 import {NewsCard} from '../components/NewsCard';
 
 export const NewsScreen = () => {
+  const theme = useTheme();
+
   const [isRefreshing, setRefreshing] = React.useState(false);
   const [apiSchoolNewsData, setApiSchoolNewsData] = React.useState(null);
 
@@ -65,23 +69,27 @@ export const NewsScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.mainView,
+        {backgroundColor: theme['background-basic-color-1']},
+      ]}>
       <TopNavigation
         title="Aktualności"
         alignment="center"
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
-      <Layout style={styles.mainLayout}>
+      <ScrollView style={styles.mainLayout}>
         <ScrollView
           contentContainerStyle={styles.cardScrollView}
           refreshControl={
             <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
           }>
           {apiSchoolNewsData ? <NewsCard data={apiSchoolNewsData} /> : null}
-          <Layout style={styles.spacer} />
+          {/* <Layout style={styles.spacer} /> */}
         </ScrollView>
-      </Layout>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -91,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainLayout: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   cardScrollView: {
     flex: 1,
