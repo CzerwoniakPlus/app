@@ -11,9 +11,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
-import {StyleSheet, ScrollView, RefreshControl} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
 import {NewsCard} from '../components/NewsCard';
-import { View } from 'react-native-web';
 
 export const NewsScreen = () => {
   const [isRefreshing, setRefreshing] = React.useState(false);
@@ -73,16 +73,16 @@ export const NewsScreen = () => {
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
-      {/* <Layout style={styles.mainLayout}> */}
+      <ScrollView style={styles.mainLayout}>
         <ScrollView
           contentContainerStyle={styles.cardScrollView}
           refreshControl={
             <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
           }>
           {apiSchoolNewsData ? <NewsCard data={apiSchoolNewsData} /> : null}
-          <Layout style={styles.spacer} />
+          {/* <Layout style={styles.spacer} /> */}
         </ScrollView>
-      {/* </Layout> */}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainLayout: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   cardScrollView: {
     flex: 1,

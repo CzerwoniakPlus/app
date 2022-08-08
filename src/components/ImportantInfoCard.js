@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   headerTextView: {
-    flex: 1,
     flexDirection: 'row',
     marginLeft: -10,
   },

@@ -14,12 +14,13 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 import {ImportantInfoCard} from '../components/ImportantInfoCard';
-import {ScrollView, RefreshControl, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
 import {LuckyNumberCard} from '../components/LuckyNumberCard';
 import {VacationCard} from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LessonBreakCard} from '../components/LessonBreakCard';
-import { View } from 'react-native-web';
+import { View } from 'react-native';
 
 export const HomeScreen = () => {
   const [apiHomeData, setApiHomeData] = React.useState(null);
