@@ -20,7 +20,7 @@ import {LuckyNumberCard} from '../components/LuckyNumberCard';
 import {VacationCard} from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LessonBreakCard} from '../components/LessonBreakCard';
-import { View } from 'react-native';
+import {View} from 'react-native';
 
 export const HomeScreen = () => {
   const [apiHomeData, setApiHomeData] = React.useState(null);
@@ -149,29 +149,29 @@ export const HomeScreen = () => {
       <Divider />
       <Layout style={styles.mainLayout}>
         <View style={{flex: 1}}>
-        <ScrollView
-          contentContainerStyle={styles.cardScrollView}
-          refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
-          }>
-          {apiHomeData ? (
-            <ImportantInfoCard data={apiHomeData.news[0]} />
-          ) : null}
-          <Layout style={styles.rowLayout}>
-            <Layout style={styles.flex}>
-              {apiHomeData ? (
-                <LuckyNumberCard data={apiHomeData.luckyNumber} />
-              ) : null}
+          <ScrollView
+            contentContainerStyle={styles.cardScrollView}
+            refreshControl={
+              <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+            }>
+            {apiHomeData ? (
+              <ImportantInfoCard data={apiHomeData.news[0]} />
+            ) : null}
+            <Layout style={styles.rowLayout}>
+              <Layout style={styles.flex}>
+                {apiHomeData ? (
+                  <LuckyNumberCard data={apiHomeData.luckyNumber} />
+                ) : null}
+              </Layout>
+              <Layout style={styles.flex}>
+                {apiHomeData ? (
+                  <VacationCard data={apiHomeData.vacation} />
+                ) : null}
+              </Layout>
             </Layout>
-            <Layout style={styles.flex}>
-              {apiHomeData ? (
-                <VacationCard data={apiHomeData.vacation} />
-              ) : null}
-            </Layout>
-          </Layout>
-          {apiHomeData ? <LessonBreakCard data={apiHomeData.lesson} /> : null}
-          <Layout style={styles.spacer} />
-        </ScrollView>
+            {apiHomeData ? <LessonBreakCard data={apiHomeData.lesson} /> : null}
+            <Layout style={styles.spacer} />
+          </ScrollView>
         </View>
       </Layout>
     </SafeAreaView>
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   rowLayout: {
     flex: 1,
     flexDirection: 'row',
-    width: "100%",
+    width: '100%',
   },
   flex: {
     flex: 1,
