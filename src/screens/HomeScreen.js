@@ -3,26 +3,28 @@ import {
   Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
-import {MenuIcon} from '../assets/icons';
-import React, {useEffect} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { MenuIcon } from '../assets/icons';
+import React, { useEffect } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   useNavigation,
   DrawerActions,
   useIsFocused,
   useFocusEffect,
 } from '@react-navigation/native';
-import {ImportantInfoCard} from '../components/ImportantInfoCard';
-import {ScrollView, StyleSheet} from 'react-native';
-import {RefreshControl} from 'react-native-web-refresh-control';
-import {LuckyNumberCard} from '../components/LuckyNumberCard';
-import {VacationCard} from '../components/VacationCard';
+import { ImportantInfoCard } from '../components/ImportantInfoCard';
+import { ScrollView, StyleSheet } from 'react-native';
+import { RefreshControl } from 'react-native-web-refresh-control';
+import { LuckyNumberCard } from '../components/LuckyNumberCard';
+import { VacationCard } from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {LessonBreakCard} from '../components/LessonBreakCard';
-import {View} from 'react-native';
+import { LessonBreakCard } from '../components/LessonBreakCard';
+import { View } from 'react-native';
 
 export const HomeScreen = () => {
+  const theme = useTheme();
   const [apiHomeData, setApiHomeData] = React.useState(null);
   const [isRefreshing, setRefreshing] = React.useState(false);
   const isFocused = useIsFocused();
@@ -140,20 +142,24 @@ export const HomeScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.mainView,
+        { backgroundColor: theme['background-basic-color-1'] },
+      ]}>
       <TopNavigation
         title="Twój niezbędnik"
         alignment="center"
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
-      <Layout style={styles.mainLayout}>
-        <View style={{flex: 1}}>
-          <ScrollView
-            contentContainerStyle={styles.cardScrollView}
-            refreshControl={
-              <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
-            }>
+      <ScrollView
+        style={styles.mainLayout}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+        }>
+        <View style={{ flex: 1 }}>
+          <View style={styles.cardScrollView}>
             {apiHomeData ? (
               <ImportantInfoCard data={apiHomeData.news[0]} />
             ) : null}
@@ -170,10 +176,10 @@ export const HomeScreen = () => {
               </Layout>
             </Layout>
             {apiHomeData ? <LessonBreakCard data={apiHomeData.lesson} /> : null}
-            <Layout style={styles.spacer} />
-          </ScrollView>
+            {/* <Layout style={styles.spacer} /> */}
+          </View>
         </View>
-      </Layout>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -190,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rowLayout: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     width: '100%',
   },
