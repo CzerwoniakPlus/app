@@ -1,0 +1,30 @@
+{
+  "theme_color": "#eb0000",
+  "background_color": "#eb0000",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "CzerwoniakPlus",
+  "short_name": "Czerwoniak+",
+  "description": "Wszystko, o czym musisz wiedzie\u0107. W twojej kieszeni. Czerwoniak  to aplikacja dla uczni\u00f3w i rodzic\u00f3w Zespo\u0142u Szk\u00f3\u0142 nr 1 im. Stefana Roweckiego \"Grota\" w Zambrowie. Znajdziesz tutaj wszystko, o czym musisz wiedzie\u0107 - najszybciej jak to mo\u017cliwe.",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "me.mateusztatko.czerwoniakplus",
+      "url": "https://play.google.com/store/apps/details?id=me.mateusztatko.czerwoniakplus"
+    }
+  ]
+}

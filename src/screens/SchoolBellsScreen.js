@@ -3,8 +3,9 @@ import {
   Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
-
+import {View} from 'react-native';
 import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -17,6 +18,7 @@ import {SchoolCalendarCard} from '../components/SchoolCalendarCard';
 export const SchoolBellsScreen = ({navigation}) => {
   const [isRefreshing, setRefreshing] = React.useState(false);
   const [lessonHours, setLessonHours] = React.useState(null);
+  const theme = useTheme();
 
   const getLessonHours = async () => {
     let jsonResponse;
@@ -109,26 +111,30 @@ export const SchoolBellsScreen = ({navigation}) => {
   ).slice(-2)}:${('0' + now.getSeconds()).slice(-2)}`;
 
   return (
-    <SafeAreaView style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.mainView,
+        { backgroundColor: theme['background-basic-color-1'] },
+      ]}>
       <TopNavigation
         title="Dzwonki"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
-      <Layout style={styles.mainLayout}>
-        <ScrollView
-          contentContainerStyle={styles.cardScrollView}
-          refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
-          }>
+      <ScrollView
+        style={styles.mainLayout}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+        }>
+        <View style={styles.cardScrollView}>
           {lessonHours ? (
             <LessonHoursCard timeOfRefresh={[dateTime]} data={lessonHours} />
           ) : null}
           <SchoolCalendarCard />
-          <Layout style={styles.spacer} />
-        </ScrollView>
-      </Layout>
+          {/* <Layout style={styles.spacer} /> */}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
