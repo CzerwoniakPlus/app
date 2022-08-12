@@ -28,7 +28,7 @@ export const SubstitutionsScreen = ({navigation}) => {
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">Zastępstwa</Text>
+        <Text category="h1">Wkrótce</Text>
       </Layout>
     </SafeAreaView>
   );
