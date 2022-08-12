@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const appDirectory = path.resolve(__dirname, '../');
 
@@ -81,6 +82,11 @@ module.exports = {
     new webpack.DefinePlugin({process: {env: {}}}),
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV === 'development',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'public', to: '.' },
+      ],
     }),
   ],
 
