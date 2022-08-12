@@ -5,23 +5,23 @@ import {
   TopNavigationAction,
   useTheme,
 } from '@ui-kitten/components';
-import { MenuIcon } from '../assets/icons';
-import React, { useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {MenuIcon} from '../assets/icons';
+import React, {useEffect} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   useNavigation,
   DrawerActions,
   useIsFocused,
   useFocusEffect,
 } from '@react-navigation/native';
-import { ImportantInfoCard } from '../components/ImportantInfoCard';
-import { ScrollView, StyleSheet } from 'react-native';
-import { RefreshControl } from 'react-native-web-refresh-control';
-import { LuckyNumberCard } from '../components/LuckyNumberCard';
-import { VacationCard } from '../components/VacationCard';
+import {ImportantInfoCard} from '../components/ImportantInfoCard';
+import {ScrollView, StyleSheet} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
+import {LuckyNumberCard} from '../components/LuckyNumberCard';
+import {VacationCard} from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LessonBreakCard } from '../components/LessonBreakCard';
-import { View } from 'react-native';
+import {LessonBreakCard} from '../components/LessonBreakCard';
+import {View} from 'react-native';
 
 export const HomeScreen = () => {
   const theme = useTheme();
@@ -145,7 +145,7 @@ export const HomeScreen = () => {
     <SafeAreaView
       style={[
         styles.mainView,
-        { backgroundColor: theme['background-basic-color-1'] },
+        {backgroundColor: theme['background-basic-color-1']},
       ]}>
       <TopNavigation
         title="Twój niezbędnik"
@@ -158,7 +158,7 @@ export const HomeScreen = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }>
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           <View style={styles.cardScrollView}>
             {apiHomeData ? (
               <ImportantInfoCard data={apiHomeData.news[0]} />

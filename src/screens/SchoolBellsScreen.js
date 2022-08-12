@@ -114,7 +114,7 @@ export const SchoolBellsScreen = ({navigation}) => {
     <SafeAreaView
       style={[
         styles.mainView,
-        { backgroundColor: theme['background-basic-color-1'] },
+        {backgroundColor: theme['background-basic-color-1']},
       ]}>
       <TopNavigation
         title="Dzwonki"

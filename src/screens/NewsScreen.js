@@ -1,4 +1,4 @@
-import { MenuIcon } from '../assets/icons';
+import {MenuIcon} from '../assets/icons';
 import {
   Divider,
   // Layout,
@@ -8,14 +8,14 @@ import {
 } from '@ui-kitten/components';
 
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { RefreshControl } from 'react-native-web-refresh-control';
-import { NewsCard } from '../components/NewsCard';
-import { View } from 'react-native';
+import {useEffect} from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
+import {RefreshControl} from 'react-native-web-refresh-control';
+import {NewsCard} from '../components/NewsCard';
+import {View} from 'react-native';
 
 export const NewsScreen = () => {
   const theme = useTheme();
@@ -73,7 +73,7 @@ export const NewsScreen = () => {
     <SafeAreaView
       style={[
         styles.mainView,
-        { backgroundColor: theme['background-basic-color-1'] },
+        {backgroundColor: theme['background-basic-color-1']},
       ]}>
       <TopNavigation
         title="Aktualności"
@@ -81,9 +81,11 @@ export const NewsScreen = () => {
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
-      <ScrollView style={styles.mainLayout} refreshControl={
-        <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
-      }>
+      <ScrollView
+        style={styles.mainLayout}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+        }>
         <View style={styles.cardScrollView}>
           {apiSchoolNewsData ? <NewsCard data={apiSchoolNewsData} /> : null}
           {/* <Layout style={styles.spacer} /> */}

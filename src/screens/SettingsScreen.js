@@ -72,7 +72,7 @@ export const SettingsScreen = ({navigation}) => {
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
           <AppSettingsCard
-            style={{width: "100%"}}
+            style={{width: '100%'}}
             usingDarkMode={usingDarkMode}
             autoRefreshAllowed={autoRefreshAllowed}
           />
