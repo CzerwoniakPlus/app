@@ -65,8 +65,6 @@ export const AppSettingsCard = props => {
             <Text>Autoodświeżanie ekranu głównego</Text>
             <Toggle checked={autoRefreshAllowed} onChange={toggleAutoRefresh} />
           </Layout>
-
-          <Text>Przystanek domowy KM</Text>
         </Card>
       </Layout>
     </React.Fragment>
@@ -77,8 +75,7 @@ const styles = StyleSheet.create({
   topContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    textAlign: 'center',
-    alignItems: 'center',
+    width: "100%"
   },
   card: {
     flex: 1,
