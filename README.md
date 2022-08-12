@@ -21,7 +21,7 @@
     Everything for Stefan Rowecki "Grot" School Complex No. 1 in Zambrów.
     <br />
     <br />
-    <a href="https://czerwoniakplus.pl">Open in browser (WIP)</a>
+    <a href="https://czerwoniakplus.pl">Open web app</a>
     ·
     <a href="https://github.com/CzerwoniakPlus/CzerwoniakPlus/issues">Report a bug</a>
     ·
