@@ -72,7 +72,7 @@ export const SettingsScreen = ({navigation}) => {
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
           <AppSettingsCard
-            style={{width: '100%'}}
+            style={styles.fullWidth}
             usingDarkMode={usingDarkMode}
             autoRefreshAllowed={autoRefreshAllowed}
           />
@@ -102,5 +102,8 @@ const styles = StyleSheet.create({
   },
   spacer: {
     height: 100,
+  },
+  fullWidth: {
+    width: '100%',
   },
 });

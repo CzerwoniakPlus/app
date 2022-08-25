@@ -52,6 +52,7 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![CzerwoniakPlus Screenshot][product-screenshot]](https://czerwoniakplus.pl)
@@ -62,14 +63,15 @@ CzerwoniakPlus is a mobile app built by students, for students. It is your sourc
 
 ### Built with
 
-* [![Node][Node.js]][Node-url]
-* [![React][React.js]][React-url]
-* [![React Native][React-Native]][React-Native-url]
-* [![Webpack][Webpack]][Webpack-url]
+- [![Node][node.js]][node-url]
+- [![React][react.js]][react-url]
+- [![React Native][react-native]][react-native-url]
+- [![Webpack][webpack]][webpack-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -78,13 +80,13 @@ To get a local copy up and running follow these simple steps.
 
 Make sure to use Node.js version of at least v16.15.0 and install newest versions of:
 
-* npm
+- npm
 
   ```sh
   npm install npm@latest -g
   ```
 
-* yarn
+- yarn
 
   ```sh
   npm install yarn@latest -g
@@ -107,32 +109,34 @@ Make sure to use Node.js version of at least v16.15.0 and install newest version
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
-* [X] Important announcement card
-* [X] Lucky number
-* [X] Vacation counter
-* [X] Current lesson/break timer
-* [X] News screen
-  * [X] News from school website
-  * [ ] News from school's Facebook profile
-* [ ] Timetables
-* [X] School Year Calendar
-* [X] School bell times list
-* [ ] Public transport screen
-  * [ ] Integration with mZambrowiak API
-  * [ ] Arrivals and departures near the school
-* [ ] Notifications
-* [ ] Settings
-  * [X] Home screen autorefresh
-  * [X] Dark mode
-  * [ ] Notification type selection
+- [x] Important announcement card
+- [x] Lucky number
+- [x] Vacation counter
+- [x] Current lesson/break timer
+- [x] News screen
+  - [x] News from school website
+  - [ ] News from school's Facebook profile
+- [ ] Timetables
+- [x] School Year Calendar
+- [x] School bell times list
+- [ ] Public transport screen
+  - [ ] Integration with mZambrowiak API
+  - [ ] Arrivals and departures near the school
+- [ ] Notifications
+- [ ] Settings
+  - [x] Home screen autorefresh
+  - [x] Dark mode
+  - [ ] Notification type selection
 
 See the [open issues](https://github.com/CzerwoniakPlus/CzerwoniakPlus/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -149,6 +153,7 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the BSD-3-Clause license. See `LICENSE.txt` for more information.
@@ -156,6 +161,7 @@ Distributed under the BSD-3-Clause license. See `LICENSE.txt` for more informati
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
 Mateusz Tatko - [@mtatko](https://linkedin.com/in/mtatko) - mtatko@mtatko.dev
@@ -166,6 +172,7 @@ Project Link: [https://github.com/CzerwoniakPlus/CzerwoniakPlus](https://github.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/CzerwoniakPlus/CzerwoniakPlus.svg?style=for-the-badge
 [contributors-url]: https://github.com/CzerwoniakPlus/CzerwoniakPlus/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/CzerwoniakPlus/CzerwoniakPlus.svg?style=for-the-badge
@@ -177,12 +184,14 @@ Project Link: [https://github.com/CzerwoniakPlus/CzerwoniakPlus](https://github.
 [license-shield]: https://img.shields.io/github/license/CzerwoniakPlus/CzerwoniakPlus.svg?style=for-the-badge
 [license-url]: https://github.com/CzerwoniakPlus/CzerwoniakPlus/blob/master/LICENSE.txt
 [product-screenshot]: https://lydia.czerwoniakplus.pl/assets/CzerwoniakPlus/CzerwoniakPlus-Web-Mockup.png
+
 <!---->
-[Node.js]: https://img.shields.io/badge/-Node.js-333333?style=for-the-badge&logo=node.js
-[Node-url]: https://nodejs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[React-Native]: https://img.shields.io/badge/-React%20Native-%2320232a?style=for-the-badge&logo=react
-[React-Native-url]: https://reactnative.dev/
-[Webpack]: https://img.shields.io/badge/Webpack-2ea44f?style=for-the-badge&logo=webpack&logoColor=ffffff
-[Webpack-url]: https://webpack.js.org/
+
+[node.js]: https://img.shields.io/badge/-Node.js-333333?style=for-the-badge&logo=node.js
+[node-url]: https://nodejs.org/
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/
+[react-native]: https://img.shields.io/badge/-React%20Native-%2320232a?style=for-the-badge&logo=react
+[react-native-url]: https://reactnative.dev/
+[webpack]: https://img.shields.io/badge/Webpack-2ea44f?style=for-the-badge&logo=webpack&logoColor=ffffff
+[webpack-url]: https://webpack.js.org/

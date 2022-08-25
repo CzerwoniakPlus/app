@@ -158,7 +158,7 @@ export const HomeScreen = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }>
-        <View style={{flex: 1}}>
+        <View style={styles.flex}>
           <View style={styles.cardScrollView}>
             {apiHomeData ? (
               <ImportantInfoCard data={apiHomeData.news[0]} />
@@ -196,7 +196,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rowLayout: {
-    // flex: 1,
     flexDirection: 'row',
     width: '100%',
   },
