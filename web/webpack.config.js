@@ -32,6 +32,7 @@ const babelLoaderConfiguration = {
           {
             alias: {
               '^react-native$': 'react-native-web',
+              'react-native-webview': 'react-native-web-webview',
             },
           },
         ],
@@ -48,6 +49,16 @@ const imageLoaderConfiguration = {
     options: {
       name: '[name].[ext]',
       esModule: false,
+    },
+  },
+};
+
+const rnWebViewOnWebRule = {
+  test: /postMock.html$/,
+  use: {
+    loader: 'url-loader',
+    options: {
+      name: '[name].[ext]',
     },
   },
 };
@@ -84,9 +95,7 @@ module.exports = {
       __DEV__: process.env.NODE_ENV === 'development',
     }),
     new CopyPlugin({
-      patterns: [
-        { from: 'public', to: '.' },
-      ],
+      patterns: [{from: 'public', to: '.'}],
     }),
   ],
 
@@ -98,6 +107,7 @@ module.exports = {
       imageLoaderConfiguration,
       uiKittenLoaderConfiguration,
       es2015LoaderConfiguration,
+      rnWebViewOnWebRule,
     ],
   },
 

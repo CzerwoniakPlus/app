@@ -1,4 +1,4 @@
-import {CalendarIcon, ClipboardIcon, ClockIcon} from '../assets/icons';
+import {CalendarIcon, ClockIcon} from '../assets/icons';
 import {
   BottomNavigation,
   BottomNavigationTab,
@@ -8,7 +8,6 @@ import React from 'react';
 import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SchoolLifeScreen} from '../screens/SchoolLifeScreen';
-import {SubstitutionsScreen} from '../screens/SubstitutionsScreen';
 import {SchoolBellsScreen} from '../screens/SchoolBellsScreen';
 
 const {Navigator, Screen} = createBottomTabNavigator();
@@ -21,7 +20,6 @@ const BottomTabBar = ({navigation, state}) => (
       selectedIndex={state.index}
       onSelect={index => navigation.navigate(state.routeNames[index])}>
       <BottomNavigationTab title="Plan lekcji" icon={CalendarIcon} />
-      <BottomNavigationTab title="Zastępstwa" icon={ClipboardIcon} />
       <BottomNavigationTab title="Dzwonki" icon={ClockIcon} />
     </BottomNavigation>
   </View>
@@ -32,11 +30,6 @@ export const SchoolLifeBottomTabsNavigator = () => (
     <Screen
       name="Plan lekcji"
       component={SchoolLifeScreen}
-      options={{headerShown: false}}
-    />
-    <Screen
-      name="Zastępstwa"
-      component={SubstitutionsScreen}
       options={{headerShown: false}}
     />
     <Screen

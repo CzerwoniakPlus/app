@@ -4204,15 +4204,15 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
 
+escape-string-regexp@2.0.0, escape-string-regexp@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
-
-escape-string-regexp@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
-  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
 escape-string-regexp@^4.0.0:
   version "4.0.0"
@@ -5377,7 +5377,7 @@ interpret@^2.2.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7700,6 +7700,13 @@ qs@6.10.3:
   dependencies:
     side-channel "^1.0.4"
 
+qs@^6.5.1:
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
+  integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
+  dependencies:
+    side-channel "^1.0.4"
+
 query-string@^7.0.0:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-7.1.1.tgz#754620669db978625a90f635f12617c271a088e1"
@@ -7868,6 +7875,13 @@ react-native-web-refresh-control@^1.1.1:
   resolved "https://registry.yarnpkg.com/react-native-web-refresh-control/-/react-native-web-refresh-control-1.1.1.tgz#41e72b38daa3ae7c6ac44fe37b749975775f7a8c"
   integrity sha512-vHCB4SEVJMrZgVo43dR+h8sg71AaybaPaIqyfzgmY9ejjRdrhbGHncPs2yAhjEzXC+OUt1cSmIpjsltLBYj9KA==
 
+react-native-web-webview@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-web-webview/-/react-native-web-webview-1.0.2.tgz#c215efa70c17589f2c8d640b1f1dc669b18c6e02"
+  integrity sha512-oNAYNuqUqeqTuAAdIejzDqvUtYA+k5lrvhUYmASdUznZNmyIaoQFA6OKoA4K9F3wdMvark42vUXkUWIp875ewg==
+  dependencies:
+    qs "^6.5.1"
+
 react-native-web@^0.18.7:
   version "0.18.7"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.18.7.tgz#2b688502b3d389c49346fa3d8c9a20cfd52f507f"
@@ -7880,6 +7894,14 @@ react-native-web@^0.18.7:
     normalize-css-color "^1.0.2"
     postcss-value-parser "^4.2.0"
     styleq "^0.1.2"
+
+react-native-webview@^11.23.0:
+  version "11.23.0"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.23.0.tgz#603a584236da2e993906e6a094f165dcac3a1fdb"
+  integrity sha512-mGrgsMnYcQONvQy59xpBn87sKqkCsSkqIDRo+c2Ov4ISYl1j90wFBs+qViVJRWdoNHVuoCAZ4nZkJ65mhDpHhA==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
 
 react-native@^0.69.1:
   version "0.69.1"
