@@ -5,8 +5,6 @@
 [![BSD-3-Clause license][license-shield]][license-url]
 <a href="https://eva.design"><img src="https://i.imgur.com/oMcxwZ0.png" alt="Eva Design System" height="20px" /></a>
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -28,8 +26,6 @@
     <a href="https://github.com/CzerwoniakPlus/CzerwoniakPlus/issues">Request a feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -55,8 +51,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -65,8 +59,6 @@
 CzerwoniakPlus is a mobile app built by students, for students. It is your source of newest and most important news, timetables, substitutions and much more. All of that - right at your fingertips.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built with
 
@@ -77,8 +69,6 @@ CzerwoniakPlus is a mobile app built by students, for students. It is your sourc
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -87,11 +77,15 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 Make sure to use Node.js version of at least v16.15.0 and install newest versions of:
+
 * npm
+
   ```sh
   npm install npm@latest -g
   ```
+
 * yarn
+
   ```sh
   npm install yarn@latest -g
   ```
@@ -99,47 +93,44 @@ Make sure to use Node.js version of at least v16.15.0 and install newest version
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/CzerwoniakPlus/CzerwoniakPlus.git
    ```
+
 2. Install required packages
+
    ```sh
    yarn install
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [X] Important announcement card
-- [X] Lucky number
-- [X] Vacation counter
-- [X] Current lesson/break timer
-- [X] News screen
-    - [X] News from school website
-    - [ ] News from school's Facebook profile
-- [ ] Integration with online class register
-    - [ ] Timetables
-    - [ ] Substitutions
-- [X] School Year Calendar
-- [X] School bell times list
-- [ ] Public transport screen
-    - [ ] Integration with mZambrowiak API
-    - [ ] Arrivals and departures near the school 
-- [ ] Notifications
-- [ ] Settings
-    - [X] Home screen autorefresh
-    - [X] Dark mode
-    - [ ] Notification type selection
+* [X] Important announcement card
+* [X] Lucky number
+* [X] Vacation counter
+* [X] Current lesson/break timer
+* [X] News screen
+  * [X] News from school website
+  * [ ] News from school's Facebook profile
+* [ ] Timetables
+* [X] School Year Calendar
+* [X] School bell times list
+* [ ] Public transport screen
+  * [ ] Integration with mZambrowiak API
+  * [ ] Arrivals and departures near the school
+* [ ] Notifications
+* [ ] Settings
+  * [X] Home screen autorefresh
+  * [X] Dark mode
+  * [ ] Notification type selection
 
 See the [open issues](https://github.com/CzerwoniakPlus/CzerwoniakPlus/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -157,16 +148,12 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the BSD-3-Clause license. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -176,8 +163,6 @@ Mateusz Tatko - [@mtatko](https://linkedin.com/in/mtatko) - mtatko@mtatko.dev
 Project Link: [https://github.com/CzerwoniakPlus/CzerwoniakPlus](https://github.com/CzerwoniakPlus/CzerwoniakPlus)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
