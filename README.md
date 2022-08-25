@@ -3,6 +3,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![BSD-3-Clause license][license-shield]][license-url]
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CzerwoniakPlus/CzerwoniakPlus/NodeJS%20with%20Webpack?style=for-the-badge)
 <a href="https://eva.design"><img src="https://i.imgur.com/oMcxwZ0.png" alt="Eva Design System" height="20px" /></a>
 
 <!-- PROJECT LOGO -->
