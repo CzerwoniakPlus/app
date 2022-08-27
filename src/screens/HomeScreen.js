@@ -34,7 +34,7 @@ export const HomeScreen = () => {
   const getHomeData = async () => {
     let jsonResponse;
     try {
-      const response = await fetch('https://dev-api.czerwoniakplus.pl/home');
+      const response = await fetch('https://api.czerwoniakplus.pl/v2/home');
       jsonResponse = await response.json();
       if (jsonResponse != null) {
         AsyncStorage.setItem('homeScreenCache', JSON.stringify(jsonResponse));

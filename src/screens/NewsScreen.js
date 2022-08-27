@@ -26,7 +26,7 @@ export const NewsScreen = () => {
   const getData = async () => {
     let jsonResponse;
     try {
-      const response = await fetch('https://api.czerwoniakplus.pl/schoolNews');
+      const response = await fetch('https://api.czerwoniakplus.pl/v2/news');
       jsonResponse = await response.json();
       if (jsonResponse != null) {
         AsyncStorage.setItem('schoolNewsCache', JSON.stringify(jsonResponse));

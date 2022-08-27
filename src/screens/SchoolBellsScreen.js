@@ -22,7 +22,9 @@ export const SchoolBellsScreen = ({navigation}) => {
   const getLessonHours = async () => {
     let jsonResponse;
     try {
-      const response = await fetch('https://api.czerwoniakplus.pl/lessonHours');
+      const response = await fetch(
+        'https://api.czerwoniakplus.pl/v2/lessonhours',
+      );
       jsonResponse = await response.json();
       if (jsonResponse != null) {
         AsyncStorage.setItem('bellCache', JSON.stringify(jsonResponse));
