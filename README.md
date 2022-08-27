@@ -16,7 +16,7 @@
 <h3 align="center">CzerwoniakPlus</h3>
 
   <p align="center">
-    Newest and most important news, timetables, substitutions and more!<br/>
+    Newest and most important news, timetables, and more!<br/>
     Everything for Stefan Rowecki "Grot" School Complex No. 1 in Zambrów.
     <br />
     <br />
