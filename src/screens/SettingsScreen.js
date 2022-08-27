@@ -10,6 +10,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ScrollView, StyleSheet} from 'react-native';
 import {AppSettingsCard} from '../components/AppSettingsCard';
+import {AboutCard} from '../components/AboutCard';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
@@ -71,6 +72,7 @@ export const SettingsScreen = ({navigation}) => {
       <Divider />
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
+          <AboutCard style={styles.fullWidth} />
           <AppSettingsCard
             style={styles.fullWidth}
             usingDarkMode={usingDarkMode}
