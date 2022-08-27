@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   topContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
   footerLayout: {
     flexDirection: 'row',
