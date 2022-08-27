@@ -12,6 +12,7 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {AppSettingsCard} from '../components/AppSettingsCard';
 import {useIsConnected} from 'react-native-offline';
 import {NotificationSettingsCard} from '../components/NotificationSettingsCard';
+import {AboutCard} from '../components/AboutCard';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
@@ -124,6 +125,7 @@ export const SettingsScreen = ({navigation}) => {
       <Divider />
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
+          <AboutCard style={styles.fullWidth} />
           <AppSettingsCard
             style={styles.fullWidth}
             usingDarkMode={usingDarkMode}
