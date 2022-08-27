@@ -10,17 +10,28 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ScrollView, StyleSheet} from 'react-native';
 import {AppSettingsCard} from '../components/AppSettingsCard';
+import {useIsConnected} from 'react-native-offline';
+import {NotificationSettingsCard} from '../components/NotificationSettingsCard';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
   const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(true);
+  const [announcementsEnabled, setannouncementsEnabled] = React.useState(true);
+  const [luckyNumberEnabled, setluckyNumberEnabled] = React.useState(true);
+  const [notificationSlidersEnabled, setnotificationSlidersEnabled] =
+    React.useState(true);
+  const isConnected = useIsConnected();
 
   React.useEffect(() => {
     const focusHandler = navigation.addListener('focus', () => {
       getSavedTheme();
       checkAutoRefreshAllowed();
+      checkAnnouncementsNotificationsEnabled();
+      checkLuckyNumberNotificationsEnabled();
+      checkNotificationSlidersEnabled();
     });
     return focusHandler;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
   const getSavedTheme = () => {
@@ -53,6 +64,48 @@ export const SettingsScreen = ({navigation}) => {
       });
   };
 
+  const checkAnnouncementsNotificationsEnabled = () => {
+    AsyncStorage.getItem('announcements')
+      .then(areAnnouncementsAllowed => {
+        if (areAnnouncementsAllowed != null) {
+          const isTrueSet = areAnnouncementsAllowed === 'true';
+          isTrueSet === true
+            ? setannouncementsEnabled(true)
+            : setannouncementsEnabled(false);
+        } else {
+          setannouncementsEnabled(true);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const checkLuckyNumberNotificationsEnabled = () => {
+    AsyncStorage.getItem('luckyNumber')
+      .then(isLuckyNumberAllowed => {
+        if (isLuckyNumberAllowed != null) {
+          const isTrueSet = isLuckyNumberAllowed === 'true';
+          isTrueSet === true
+            ? setluckyNumberEnabled(true)
+            : setluckyNumberEnabled(false);
+        } else {
+          setluckyNumberEnabled(true);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const checkNotificationSlidersEnabled = () => {
+    if (isConnected) {
+      setnotificationSlidersEnabled(true);
+    } else {
+      setnotificationSlidersEnabled(false);
+    }
+  };
+
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -75,6 +128,12 @@ export const SettingsScreen = ({navigation}) => {
             style={styles.fullWidth}
             usingDarkMode={usingDarkMode}
             autoRefreshAllowed={autoRefreshAllowed}
+          />
+          <NotificationSettingsCard
+            style={styles.fullWidth}
+            announcementsEnabled={announcementsEnabled}
+            luckyNumberEnabled={luckyNumberEnabled}
+            togglesEnabled={notificationSlidersEnabled}
           />
           <Layout style={styles.spacer} />
         </ScrollView>
