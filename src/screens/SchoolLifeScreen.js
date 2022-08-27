@@ -8,6 +8,7 @@ import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TimetableWebView} from '../components/TimetableWebView';
+import {StyleSheet} from 'react-native';
 
 export const SchoolLifeScreen = ({navigation}) => {
   const [timetableURL, setTimetableURL] = React.useState(null);
@@ -32,17 +33,14 @@ export const SchoolLifeScreen = ({navigation}) => {
   );
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.flex}>
       <TopNavigation
         title="Plan lekcji"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        {/*
-        //TODO: cleanup styles
-        */}
+      <Layout style={styles.layout}>
         <TimetableWebView
           timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
         />
@@ -50,3 +48,14 @@ export const SchoolLifeScreen = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  layout: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flex: {
+    flex: 1,
+  },
+});
