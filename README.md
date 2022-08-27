@@ -119,8 +119,7 @@ Make sure to use Node.js version of at least v16.15.0 and install newest version
 - [x] Current lesson/break timer
 - [x] News screen
   - [x] News from school website
-  - [ ] News from school's Facebook profile
-- [ ] Timetables
+- [x] Timetables
 - [x] School Year Calendar
 - [x] School bell times list
 - [ ] Public transport screen

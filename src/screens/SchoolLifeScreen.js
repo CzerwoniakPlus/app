@@ -10,6 +10,19 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {TimetableWebView} from '../components/TimetableWebView';
 
 export const SchoolLifeScreen = ({navigation}) => {
+  const [timetableURL, setTimetableURL] = React.useState(null);
+
+  const getTimetableURL = async () => {
+    const url = await (
+      await fetch('https://api.czerwoniakplus.pl/v2/timetableurl')
+    ).text();
+    setTimetableURL(url);
+  };
+
+  React.useEffect(() => {
+    getTimetableURL();
+  }, []);
+
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -28,10 +41,11 @@ export const SchoolLifeScreen = ({navigation}) => {
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {/*
-        //TODO: cleanup styles and
-        //TODO: make timetableLink downloadable from API
+        //TODO: cleanup styles
         */}
-        <TimetableWebView timetableLink="https://docs.google.com/gview?embedded=true&url=http://zs1rowecki.pl/images/Dokumenty_Szkolne/Plan%20lekcji%202021-22.pdf" />
+        <TimetableWebView
+          timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
+        />
       </Layout>
     </SafeAreaView>
   );
