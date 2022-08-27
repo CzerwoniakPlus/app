@@ -102,6 +102,23 @@ const Header = props => {
           </View>
         </View>
       );
+    case 'error': {
+      return (
+        <View {...props}>
+          <View style={styles.headerTextView}>
+            <Icon
+              name="clock-outline"
+              fill={theme['text-basic-color']}
+              width={24}
+              height={24}
+            />
+            <Text category="h6" style={styles.headerText}>
+              Błąd
+            </Text>
+          </View>
+        </View>
+      );
+    }
     default:
       break;
   }
@@ -121,6 +138,8 @@ const Body = props => {
       return <Text>Pozostało {props.data.timeLeft} do 1 lekcji</Text>;
     case 'weekend':
       return <Text>Miłego weekendu!</Text>;
+    case 'error':
+      return <Text>Wystąpił błąd przy pobieraniu danych z API</Text>;
     default:
       break;
   }
