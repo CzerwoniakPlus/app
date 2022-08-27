@@ -53,7 +53,7 @@ export const HomeScreen = () => {
             },
           ],
           lesson: {
-            type: 'weekend',
+            type: 'error',
             isShortLessons: false,
           },
           luckyNumber: {
