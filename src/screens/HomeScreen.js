@@ -22,6 +22,8 @@ import {VacationCard} from '../components/VacationCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LessonBreakCard} from '../components/LessonBreakCard';
 import {View} from 'react-native';
+import {firebase} from '@react-native-firebase/messaging';
+import {useIsConnected} from 'react-native-offline';
 
 export const HomeScreen = () => {
   const theme = useTheme();
@@ -30,6 +32,48 @@ export const HomeScreen = () => {
   const isFocused = useIsFocused();
   const [refreshInterval, setRefreshInterval] = React.useState(0);
   const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(null);
+  const isConnected = useIsConnected();
+
+  const checkNotificationsSubscription = async () => {
+    const firstRun = await AsyncStorage.getItem('appFirstRun');
+    if (firstRun === null) {
+      console.log('isConnected:', isConnected);
+      if (!isConnected) {
+        return;
+      } else {
+        await firebase.messaging().requestPermission();
+        await AsyncStorage.setItem('appFirstRun', 'false');
+        firebase
+          .messaging()
+          .subscribeToTopic('luckyNumberV2')
+          .then(async () => {
+            await AsyncStorage.setItem('luckyNumber', 'true').then(() => {
+              console.log(
+                'subscribed to luckyNumber notifications on first run',
+              );
+            });
+          });
+        firebase
+          .messaging()
+          .subscribeToTopic('announcementsV2')
+          .then(async () => {
+            await AsyncStorage.setItem('announcements', 'true').then(() => {
+              console.log(
+                'subscribed to announcements notifications on first run',
+              );
+            });
+          });
+        firebase
+          .messaging()
+          .getToken()
+          .then(async token => {
+            await AsyncStorage.setItem('notificationToken', token).then(() => {
+              console.log('notificationToken saved: ', token);
+            });
+          });
+      }
+    }
+  };
 
   const getHomeData = async () => {
     let jsonResponse;
@@ -92,8 +136,11 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     setRefreshing(true);
+    checkNotificationsSubscription();
     getHomeData();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
+
   useEffect(() => {
     (async () => {
       if (isFocused) {

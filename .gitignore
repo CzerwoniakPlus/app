@@ -64,3 +64,6 @@ buck-out/
 
 # Webpack output
 /dist
+
+# Google Services
+android/app/google-services.json

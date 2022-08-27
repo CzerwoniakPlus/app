@@ -10,6 +10,7 @@ import {ThemeContext} from './src/utils/ThemeContext';
 import {StatusBar} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LogBox} from 'react-native';
+import {NetworkProvider} from 'react-native-offline';
 
 export default () => {
   LogBox.ignoreLogs([
@@ -40,14 +41,16 @@ export default () => {
 
   return (
     <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ThemeContext.Provider value={{theme, toggleTheme}}>
-        <ApplicationProvider {...eva} theme={eva[theme]}>
-          <SafeAreaProvider>
-            <AppNavigator />
-          </SafeAreaProvider>
-        </ApplicationProvider>
-      </ThemeContext.Provider>
+      <NetworkProvider>
+        <IconRegistry icons={EvaIconsPack} />
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
+          <ApplicationProvider {...eva} theme={eva[theme]}>
+            <SafeAreaProvider>
+              <AppNavigator />
+            </SafeAreaProvider>
+          </ApplicationProvider>
+        </ThemeContext.Provider>
+      </NetworkProvider>
     </>
   );
 };
