@@ -11,6 +11,8 @@ import {StatusBar} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LogBox} from 'react-native';
 import {NetworkProvider} from 'react-native-offline';
+import Instabug, {APM, CrashReporting, Replies} from 'instabug-reactnative';
+import {instabug_key} from '@env';
 
 export default () => {
   LogBox.ignoreLogs([
@@ -21,6 +23,12 @@ export default () => {
   const [theme, setTheme] = React.useState('light');
 
   React.useEffect(() => {
+    Instabug.start(instabug_key, [Instabug.invocationEvent.shake]);
+    Instabug.setWelcomeMessageMode(Instabug.welcomeMessageMode.disabled);
+    APM.setEnabled(true);
+    Replies.setInAppNotificationsEnabled(false);
+    Replies.setEnabled(false);
+    CrashReporting.setEnabled(true);
     AsyncStorage.getItem('theme')
       .then(savedTheme => {
         setTheme(savedTheme || 'light');
@@ -54,27 +62,3 @@ export default () => {
     </>
   );
 };
-
-// *****Default Code****
-/* import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
- */

@@ -58,7 +58,7 @@
 
 [![CzerwoniakPlus Screenshot][product-screenshot]](https://czerwoniakplus.pl)
 
-CzerwoniakPlus is a mobile app built by students, for students. It is your source of newest and most important news, timetables, substitutions and much more. All of that - right at your fingertips.
+CzerwoniakPlus is a mobile app built by students, for students. It is your source of newest and most important news, timetables and much more. All of that - right at your fingertips.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

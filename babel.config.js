@@ -7,5 +7,6 @@ module.exports = {
         relativeSourceLocation: true,
       },
     ],
+    ['module:react-native-dotenv'],
   ],
 };
