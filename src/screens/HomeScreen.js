@@ -24,6 +24,7 @@ import {LessonBreakCard} from '../components/LessonBreakCard';
 import {View} from 'react-native';
 import {firebase} from '@react-native-firebase/messaging';
 import {useIsConnected} from 'react-native-offline';
+import {OfflineNotice} from '../components/OfflineNotice';
 
 export const HomeScreen = () => {
   const theme = useTheme();
@@ -200,6 +201,7 @@ export const HomeScreen = () => {
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
+      {isConnected ? null : <OfflineNotice />}
       <ScrollView
         style={styles.mainLayout}
         refreshControl={

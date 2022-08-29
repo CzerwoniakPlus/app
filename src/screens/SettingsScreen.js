@@ -13,6 +13,7 @@ import {AppSettingsCard} from '../components/AppSettingsCard';
 import {useIsConnected} from 'react-native-offline';
 import {NotificationSettingsCard} from '../components/NotificationSettingsCard';
 import {AboutCard} from '../components/AboutCard';
+import {OfflineNotice} from '../components/OfflineNotice';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
@@ -123,6 +124,7 @@ export const SettingsScreen = ({navigation}) => {
         accessoryLeft={BackAction}
       />
       <Divider />
+      {isConnected ? null : <OfflineNotice />}
       <Layout style={styles.mainLayout}>
         <ScrollView contentContainerStyle={styles.cardScrollView}>
           <AboutCard style={styles.fullWidth} />

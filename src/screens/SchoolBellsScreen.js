@@ -13,11 +13,14 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {RefreshControl} from 'react-native-web-refresh-control';
 import {LessonHoursCard} from '../components/LessonHoursCard';
 import {SchoolCalendarCard} from '../components/SchoolCalendarCard';
+import {useIsConnected} from 'react-native-offline';
+import {OfflineNotice} from '../components/OfflineNotice';
 
 export const SchoolBellsScreen = ({navigation}) => {
   const [isRefreshing, setRefreshing] = React.useState(false);
   const [lessonHours, setLessonHours] = React.useState(null);
   const theme = useTheme();
+  const isConnected = useIsConnected();
 
   const getLessonHours = async () => {
     let jsonResponse;
@@ -123,6 +126,7 @@ export const SchoolBellsScreen = ({navigation}) => {
         accessoryLeft={BackAction}
       />
       <Divider />
+      {isConnected ? null : <OfflineNotice />}
       <ScrollView
         style={styles.mainLayout}
         refreshControl={

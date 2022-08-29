@@ -16,6 +16,8 @@ import {StyleSheet, ScrollView} from 'react-native';
 import {RefreshControl} from 'react-native-web-refresh-control';
 import {NewsCard} from '../components/NewsCard';
 import {View} from 'react-native';
+import {useIsConnected} from 'react-native-offline';
+import {OfflineNotice} from '../components/OfflineNotice';
 
 export const NewsScreen = () => {
   const theme = useTheme();
@@ -61,6 +63,7 @@ export const NewsScreen = () => {
   }, []);
 
   const navigation = useNavigation();
+  const isConnected = useIsConnected();
 
   const renderDrawerAction = () => (
     <TopNavigationAction
@@ -81,6 +84,7 @@ export const NewsScreen = () => {
         accessoryLeft={renderDrawerAction}
       />
       <Divider />
+      {isConnected ? null : <OfflineNotice />}
       <ScrollView
         style={styles.mainLayout}
         refreshControl={
