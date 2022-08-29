@@ -14,6 +14,7 @@ import {
   SmileyOutlineIcon,
   CarIcon,
   SettingsIcon,
+  FeedbackIcon,
 } from '../assets/icons';
 import {BottomTabsNavigator} from './BottomTabsNavigator';
 import {PublicTransportScreen} from '../screens/PublicTransportScreen';
@@ -23,6 +24,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Linking} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SchoolLifeBottomTabsNavigator} from './SchoolLifeBottomTabsNavigator';
+import Instabug from 'instabug-reactnative';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -64,6 +66,15 @@ const DrawerContent = ({navigation, state}) => {
         <DrawerItem
           title="Dziennik elektroniczny"
           onPress={() => Linking.openURL('https://portal.librus.pl')}
+        />
+        <View />
+        <DrawerItem
+          title="Prześlij opinię"
+          accessoryLeft={FeedbackIcon}
+          onPress={() => {
+            navigation.closeDrawer();
+            setTimeout(() => Instabug.show(), 800);
+          }}
         />
       </Drawer>
     </SafeAreaView>

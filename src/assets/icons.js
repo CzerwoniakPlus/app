@@ -24,6 +24,6 @@ export const ClockIcon = style => <Icon {...style} name="clock-outline" />;
 export const CalendarIcon = style => (
   <Icon {...style} name="calendar-outline" />
 );
-export const ClipboardIcon = style => (
-  <Icon {...style} name="clipboard-outline" />
+export const FeedbackIcon = style => (
+  <Icon {...style} name="message-circle-outline" />
 );
