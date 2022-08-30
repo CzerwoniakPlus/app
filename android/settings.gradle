@@ -9,3 +9,8 @@ if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true")
     include(":ReactAndroid:hermes-engine")
     project(":ReactAndroid:hermes-engine").projectDir = file('../node_modules/react-native/ReactAndroid/hermes-engine')
 }
+
+UPLOAD_KEYSTORE=
+UPLOAD_KEYSTORE_ALIAS=
+UPLOAD_KEYSTORE_PASSWORD=
+UPLOAD_KEY_PASSWORD=
