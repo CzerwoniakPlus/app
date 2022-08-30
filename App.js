@@ -19,6 +19,7 @@ export default () => {
     'You need to specify name or key when calling navigate with an object as the argument',
     'Found screens with the same name nested inside one another',
     'Stack Navigator: \'headerMode="none"\' is deprecated.',
+    'Error - You need to specify name or key when calling navigate with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigate for usage.',
   ]);
   const [theme, setTheme] = React.useState('light');
 
@@ -38,12 +39,17 @@ export default () => {
       });
   }, []);
 
-  StatusBar.setBarStyle(theme === 'light' ? 'dark-content' : 'light-content');
+  theme === 'light'
+    ? StatusBar.setBackgroundColor('#FFFFFF')
+    : StatusBar.setBackgroundColor('#222B45');
+
+  theme === 'light'
+    ? StatusBar.setBarStyle('dark-content')
+    : StatusBar.setBarStyle('light-content');
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
-    StatusBar.setBarStyle(theme === 'light' ? 'dark-content' : 'light-content');
     AsyncStorage.setItem('theme', nextTheme);
   };
 
