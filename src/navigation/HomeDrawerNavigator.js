@@ -47,7 +47,11 @@ const DrawerContent = ({navigation, state}) => {
       <Drawer
         header={Header}
         selectedIndex={new IndexPath(state.index)}
-        onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+        onSelect={index =>
+          navigation.navigate({
+            name: state.routeNames[index.row],
+          })
+        }>
         <DrawerItem title="Strona główna" accessoryLeft={HomeIcon} />
         <DrawerItem title="Życie szkoły" accessoryLeft={SmileyOutlineIcon} />
         <DrawerItem title="Komunikacja miejska" accessoryLeft={CarIcon} />
@@ -71,6 +75,7 @@ const DrawerContent = ({navigation, state}) => {
         <DrawerItem
           title="Prześlij opinię"
           accessoryLeft={FeedbackIcon}
+          name="feedback"
           onPress={() => {
             navigation.closeDrawer();
             setTimeout(() => Instabug.show(), 800);
