@@ -74,6 +74,13 @@ export const AboutCard = props => {
               }}>
               Github - mtatko
             </Button>
+            <Button
+              style={styles.button}
+              onPress={() => {
+                Linking.openURL('https://api.czerwoniakplus.pl/v2/privacy');
+              }}>
+              Polityka prywatności
+            </Button>
           </Layout>
         </Card>
       </Layout>
