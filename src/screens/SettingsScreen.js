@@ -1,20 +1,21 @@
 import {
   Divider,
-  Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
 import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {AppSettingsCard} from '../components/AppSettingsCard';
 import {AboutCard} from '../components/AboutCard';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
   const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(true);
+  const theme = useTheme();
 
   React.useEffect(() => {
     const focusHandler = navigation.addListener('focus', () => {
@@ -63,24 +64,28 @@ export const SettingsScreen = ({navigation}) => {
   );
 
   return (
-    <SafeAreaView style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.mainView,
+        {backgroundColor: theme['background-basic-color-1']},
+      ]}>
       <TopNavigation
         title="Ustawienia"
         alignment="center"
         accessoryLeft={BackAction}
       />
       <Divider />
-      <Layout style={styles.mainLayout}>
-        <ScrollView contentContainerStyle={styles.cardScrollView}>
+      <ScrollView contentContainerStyle={styles.mainLayout}>
+        <View style={styles.cardScrollView}>
           <AboutCard style={styles.fullWidth} />
           <AppSettingsCard
             style={styles.fullWidth}
             usingDarkMode={usingDarkMode}
             autoRefreshAllowed={autoRefreshAllowed}
           />
-          <Layout style={styles.spacer} />
-        </ScrollView>
-      </Layout>
+          {/* <Layout style={styles.spacer} /> */}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainLayout: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   cardScrollView: {
     alignItems: 'center',
