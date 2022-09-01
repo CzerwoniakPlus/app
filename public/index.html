@@ -39,6 +39,12 @@
       /* These styles disable body scrolling if you are using <ScrollView> */
       body {
         overflow: hidden;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        -webkit-overflow-scrolling: auto !important;
       }
       /* These styles make the root element flex and column wise filling */
       #root {
@@ -52,5 +58,9 @@
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <script type="text/javascript" src="/bundle.web.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inobounce/0.2.1/inobounce.min.js"></script>
+    <script src="https://unpkg.com/@8lall0/body-lock@0.0.1/src/body-lock.js"></script>
+    <script>
+      BodyLock.lock();
+    </script>
   </body>
 </html>
