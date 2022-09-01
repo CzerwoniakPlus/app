@@ -26,7 +26,6 @@
     <meta name="application-name" content="Czerwoniak+" />
     <meta name="msapplication-TileColor" content="#ff2f2f" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    <meta name="theme-color" content="#ff2f2f" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -40,12 +39,6 @@
       /* These styles disable body scrolling if you are using <ScrollView> */
       body {
         overflow: hidden;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        -webkit-overflow-scrolling: auto !important;
       }
       /* These styles make the root element flex and column wise filling */
       #root {
@@ -58,5 +51,6 @@
     <div id="root"></div>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <script type="text/javascript" src="/bundle.web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inobounce/0.2.1/inobounce.min.js"></script>
   </body>
 </html>
