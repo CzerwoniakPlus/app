@@ -10,6 +10,7 @@ import {ThemeContext} from './src/utils/ThemeContext';
 import {StatusBar} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LogBox} from 'react-native';
+import {Appearance} from 'react-native';
 
 export default () => {
   LogBox.ignoreLogs([
@@ -18,16 +19,31 @@ export default () => {
     'Stack Navigator: \'headerMode="none"\' is deprecated.',
   ]);
   const [theme, setTheme] = React.useState('light');
+  const colorScheme = Appearance.getColorScheme();
 
   React.useEffect(() => {
     AsyncStorage.getItem('theme')
       .then(savedTheme => {
-        setTheme(savedTheme || 'light');
+        setTheme(savedTheme || colorScheme || 'light');
       })
       .catch(err => {
         console.log(err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  React.useEffect(() => {
+    AsyncStorage.getItem('theme')
+      .then(savedTheme => {
+        if (!savedTheme) {
+          AsyncStorage.setItem('theme', colorScheme || 'light');
+        }
+        setTheme(savedTheme || colorScheme || 'light');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [colorScheme]);
 
   StatusBar.setBarStyle(theme === 'light' ? 'dark-content' : 'light-content');
 
@@ -51,27 +67,3 @@ export default () => {
     </>
   );
 };
-
-// *****Default Code****
-/* import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
- */
