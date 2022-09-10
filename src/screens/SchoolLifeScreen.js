@@ -41,9 +41,11 @@ export const SchoolLifeScreen = ({navigation}) => {
       />
       <Divider />
       <Layout style={styles.layout}>
-        <TimetableWebView
-          timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
-        />
+        {timetableURL ? (
+          <TimetableWebView
+            timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
+          />
+        ) : null}
       </Layout>
     </SafeAreaView>
   );
