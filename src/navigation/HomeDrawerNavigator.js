@@ -45,7 +45,11 @@ const DrawerContent = ({navigation, state}) => {
       <Drawer
         header={Header}
         selectedIndex={new IndexPath(state.index)}
-        onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+        onSelect={index =>
+          navigation.navigate({
+            name: state.routeNames[index.row],
+          })
+        }>
         <DrawerItem title="Strona główna" accessoryLeft={HomeIcon} />
         <DrawerItem title="Życie szkoły" accessoryLeft={SmileyOutlineIcon} />
         <DrawerItem title="Komunikacja miejska" accessoryLeft={CarIcon} />
@@ -64,6 +68,11 @@ const DrawerContent = ({navigation, state}) => {
         <DrawerItem
           title="Dziennik elektroniczny"
           onPress={() => Linking.openURL('https://portal.librus.pl')}
+        />
+        <View />
+        <DrawerItem
+          title="Prześlij opinię"
+          onPress={() => Linking.openURL('https://tally.so/r/wQKpbg')}
         />
       </Drawer>
     </SafeAreaView>
