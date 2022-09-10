@@ -38,6 +38,7 @@ export const VacationCard = props => {
                 style={styles.progressBar}
                 progress={props.data.procent}
                 height={15}
+                width={null}
                 color="#41C655"
               />
             </View>
