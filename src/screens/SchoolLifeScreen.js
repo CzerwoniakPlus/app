@@ -51,9 +51,13 @@ export const SchoolLifeScreen = ({navigation}) => {
       {isConnected ? null : <OfflineNotice />}
       <Layout style={styles.layout}>
         {isConnected ? (
-          <TimetableWebView
-            timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
-          />
+          timetableURL ? (
+            <TimetableWebView
+              timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
+            />
+          ) : (
+            <TimetableOfflineCard />
+          )
         ) : (
           <TimetableOfflineCard />
         )}
