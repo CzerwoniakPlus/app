@@ -13,6 +13,7 @@ import {LogBox} from 'react-native';
 import {NetworkProvider} from 'react-native-offline';
 import Instabug, {APM, CrashReporting, Replies} from 'instabug-reactnative';
 import {instabug_key} from '@env';
+import {Appearance} from 'react-native';
 
 export default () => {
   LogBox.ignoreLogs([
@@ -22,6 +23,7 @@ export default () => {
     'Error - You need to specify name or key when calling navigate with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigate for usage.',
   ]);
   const [theme, setTheme] = React.useState('light');
+  const colorScheme = Appearance.getColorScheme();
 
   React.useEffect(() => {
     Instabug.start(instabug_key, [Instabug.invocationEvent.shake]);
@@ -32,12 +34,26 @@ export default () => {
     CrashReporting.setEnabled(true);
     AsyncStorage.getItem('theme')
       .then(savedTheme => {
-        setTheme(savedTheme || 'light');
+        setTheme(savedTheme || colorScheme || 'light');
       })
       .catch(err => {
         console.log(err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  React.useEffect(() => {
+    AsyncStorage.getItem('theme')
+      .then(savedTheme => {
+        if (!savedTheme) {
+          AsyncStorage.setItem('theme', colorScheme || 'light');
+        }
+        setTheme(savedTheme || colorScheme || 'light');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [colorScheme]);
 
   theme === 'light'
     ? StatusBar.setBackgroundColor('#FFFFFF')
