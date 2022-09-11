@@ -55,9 +55,7 @@ export const SchoolLifeScreen = ({navigation}) => {
             <TimetableWebView
               timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
             />
-          ) : (
-            <TimetableOfflineCard />
-          )
+          ) : null
         ) : (
           <TimetableOfflineCard />
         )}
