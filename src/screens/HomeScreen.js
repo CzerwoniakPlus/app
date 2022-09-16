@@ -146,8 +146,10 @@ export const HomeScreen = () => {
     (async () => {
       if (isFocused) {
         await checkAutoRefreshAllowed();
+        onRefresh();
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocused]);
 
   useFocusEffect(
