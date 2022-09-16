@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 2,
-    maxHeight: 250,
+    maxHeight: 300,
     borderWidth: 2.5,
     marginTop: 15,
     marginLeft: 15,
