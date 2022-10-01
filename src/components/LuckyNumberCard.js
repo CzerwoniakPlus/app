@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    maxHeight: 250,
+    maxHeight: 300,
     margin: 2,
     borderWidth: 2.5,
     marginTop: 15,
