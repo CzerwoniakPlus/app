@@ -1,6 +1,6 @@
 {
   "name": "czerwoniakplus",
-  "version": "2.0.0",
+  "version": "2.1.0-beta.3+thomas22416d",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -30,9 +30,12 @@
     "react-dom": "^18.2.0",
     "react-native": "^0.69.1",
     "react-native-awesome-alerts": "^2.0.0",
+    "react-native-blob-util": "^0.16.3",
     "react-native-dotenv": "^3.3.1",
+    "react-native-dropdown-picker": "^5.4.2",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-offline": "^6.0.0",
+    "react-native-pdf": "^6.6.2",
     "react-native-progress": "^5.0.0",
     "react-native-reanimated": "^2.9.1",
     "react-native-safe-area-context": "^4.3.1",
