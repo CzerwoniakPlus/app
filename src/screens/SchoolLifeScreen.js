@@ -3,26 +3,56 @@ import {
   Layout,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from '@ui-kitten/components';
 import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {TimetableWebView} from '../components/TimetableWebView';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import DropdownPicker from 'react-native-dropdown-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useIsFocused} from '@react-navigation/native';
+import {TimetableLoadingIndicator} from '../components/TimetableLoadingIndicator';
 
 export const SchoolLifeScreen = ({navigation}) => {
-  const [timetableURL, setTimetableURL] = React.useState(null);
+  const [timetablesData, setTimetablesData] = React.useState(null);
+  const [timetableOpen, setTimetableOpen] = React.useState(false);
+  const [timetableValue, setTimetableValue] = React.useState();
+  const [selectedTimetable, setSelectedTimetable] = React.useState(null);
 
-  const getTimetableURL = async () => {
-    const url = await (
-      await fetch('https://api.czerwoniakplus.pl/v2/timetableurl')
-    ).text();
-    setTimetableURL(url);
+  const theme = useTheme();
+  const isFocused = useIsFocused();
+
+  const getTimetables = async () => {
+    const data = await (
+      await fetch('https://api.czerwoniakplus.pl/v2/timetables')
+    ).json();
+    setTimetablesData(data);
+    AsyncStorage.getItem('last_timetable').then(result => {
+      if (result) {
+        setTimetableValue(result);
+      }
+    });
+  };
+
+  const getTimetable = async id => {
+    if (id) {
+      setSelectedTimetable(timetablesData.timetables[id]);
+      AsyncStorage.setItem('last_timetable', id);
+    }
   };
 
   React.useEffect(() => {
-    getTimetableURL();
+    getTimetables();
   }, []);
+
+  React.useEffect(() => {
+    (async () => {
+      if (isFocused) {
+        setTimetableOpen(false);
+      }
+    })();
+  }, [isFocused]);
 
   const navigateBack = () => {
     navigation.goBack();
@@ -41,11 +71,53 @@ export const SchoolLifeScreen = ({navigation}) => {
       />
       <Divider />
       <Layout style={styles.layout}>
-        {timetableURL ? (
-          <TimetableWebView
-            timetableLink={`https://docs.google.com/gview?embedded=true&url=${timetableURL}`}
-          />
-        ) : null}
+        {timetablesData ? (
+          <View style={styles.flex}>
+            <DropdownPicker
+              theme={theme === 'light' ? 'LIGHT' : 'DARK'}
+              closeOnBackPressed={true}
+              style={[
+                {
+                  backgroundColor: theme['background-basic-color-1'],
+                },
+                styles.border,
+              ]}
+              dropDownContainerStyle={{
+                backgroundColor: theme['background-basic-color-1'],
+              }}
+              labelStyle={{color: theme['text-basic-color']}}
+              listItemLabelStyle={{color: theme['text-basic-color']}}
+              schema={{
+                label: 'name',
+                value: 'id',
+              }}
+              selectedItemLabelStyle={styles.selectedItem}
+              arrowIconStyle={{tintColor: theme['text-basic-color']}}
+              tickIconStyle={{tintColor: theme['text-basic-color']}}
+              placeholder="Wybierz klasę"
+              translation={{
+                SEARCH_PLACEHOLDER: 'Wyszukaj...',
+              }}
+              searchable={true}
+              open={timetableOpen}
+              value={timetableValue}
+              items={timetablesData.dataSet}
+              maxHeight={350}
+              setOpen={setTimetableOpen}
+              setValue={setTimetableValue}
+              onChangeValue={value => {
+                getTimetable(value);
+              }}
+            />
+            {selectedTimetable ? (
+              <View style={styles.flex}>
+                //TODO: Timetable viewer
+              </View>
+            ) : null}
+          </View>
+        ) : (
+          <TimetableLoadingIndicator />
+        )}
       </Layout>
     </SafeAreaView>
   );
@@ -61,3 +133,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
