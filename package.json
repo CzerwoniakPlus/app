@@ -1,6 +1,6 @@
 {
   "name": "czerwoniakplus",
-  "version": "2.1.0-beta.3+thomas22434a",
+  "version": "2.1.0-beta.3+thomas22435h",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -25,6 +25,7 @@
     "@ui-kitten/eva-icons": "^5.1.2",
     "axios": "^0.27.2",
     "babel-preset-es2015": "^6.24.1",
+    "pdfjs-dist": "^2.16.105",
     "react": "18.0.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.69.1",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/runtime": "^7.18.9",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^28.1.3",
