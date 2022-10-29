@@ -7,7 +7,7 @@ import {
 } from '@ui-kitten/components';
 import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
-import {StyleSheet, View, SafeAreaView} from 'react-native';
+import {StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
 import DropdownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
@@ -109,10 +109,14 @@ export const SchoolLifeScreen = ({navigation}) => {
                 getTimetable(value);
               }}
             />
-            {selectedTimetable ?
-              //TODO: Zooming and scaling to available space
-              <PdfViewer url={selectedTimetable} />
-            : null}
+            {selectedTimetable ? (
+              <ScrollView
+                horizontal={true}
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollViewContainer}>
+                <PdfViewer url={selectedTimetable} />
+              </ScrollView>
+            ) : null}
           </View>
         ) : (
           <TimetableLoadingIndicator />
@@ -132,5 +136,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  scrollView: {
+    flex: 1,
+    maxHeight: '100%',
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
 });
-

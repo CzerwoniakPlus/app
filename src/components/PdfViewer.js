@@ -40,5 +40,8 @@ export const PdfViewer = props => {
 
   const prevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
 
-  return <canvas ref={canvasRef}></canvas>;
+  const canvasStyle = {
+    maxHeight: '100%',
+  };
+  return <canvas style={canvasStyle} ref={canvasRef}></canvas>;
 };
