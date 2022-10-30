@@ -111,7 +111,7 @@ export const SchoolLifeScreen = ({navigation}) => {
             />
             {selectedTimetable ? (
               <View style={styles.flex}>
-                <PdfViewer url={selectedTimetable} />
+                <PdfViewer theme={theme === 'light' ? 'LIGHT' : 'DARK'} url={selectedTimetable} />
               </View>
             ) : null}
           </View>

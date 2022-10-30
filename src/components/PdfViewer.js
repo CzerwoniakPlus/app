@@ -32,6 +32,10 @@ export const PdfViewer = props => {
     });
   }, [props.url]);
 
+  useEffect(() => {
+    viewer.setTheme(props.theme.toUpperCase());
+  }, [props.theme]);
+
   return <div style={styles.viewer} ref={viewer}></div>;
 };
 
