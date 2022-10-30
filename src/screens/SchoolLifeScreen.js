@@ -7,7 +7,7 @@ import {
 } from '@ui-kitten/components';
 import {ArrowIosBackIcon} from '../assets/icons';
 import React from 'react';
-import {StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, View, SafeAreaView} from 'react-native';
 import DropdownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
@@ -110,12 +110,9 @@ export const SchoolLifeScreen = ({navigation}) => {
               }}
             />
             {selectedTimetable ? (
-              <ScrollView
-                horizontal={true}
-                style={styles.scrollView}
-                contentContainerStyle={styles.scrollViewContainer}>
+              <View style={styles.flex}>
                 <PdfViewer url={selectedTimetable} />
-              </ScrollView>
+              </View>
             ) : null}
           </View>
         ) : (
