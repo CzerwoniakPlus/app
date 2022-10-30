@@ -19,7 +19,7 @@ export const PdfViewer = props => {
     ).then(instance => {
       // now you can access APIs through the WebViewer instance
       const {Core} = instance;
-
+      instance.UI.setTheme(props.theme);
       // adding an event listener for when a document is loaded
       Core.documentViewer.addEventListener('documentLoaded', () => {
         console.log('document loaded');
@@ -30,11 +30,7 @@ export const PdfViewer = props => {
         console.log(`Page number is: ${pageNumber}`);
       });
     });
-  }, [props.url]);
-
-  useEffect(() => {
-    viewer.setTheme(props.theme.toUpperCase());
-  }, [props.theme]);
+  }, [props.url, props.theme]);
 
   return <div style={styles.viewer} ref={viewer}></div>;
 };
