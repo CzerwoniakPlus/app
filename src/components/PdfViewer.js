@@ -1,51 +1,43 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
-import * as pdfjsLib from 'pdfjs-dist/build/pdf';
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
+import WebViewer from '@pdftron/pdfjs-express-viewer';
+import React, {useRef, useEffect} from 'react';
+import {StyleSheet} from 'react-native';
 
 export const PdfViewer = props => {
-  const canvasRef = useRef();
-  pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
-  const [pdfRef, setPdfRef] = useState();
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const renderPage = useCallback(
-    (pageNum, pdf = pdfRef) => {
-      pdf &&
-        pdf.getPage(pageNum).then(function (page) {
-          const viewport = page.getViewport({scale: 1.5});
-          const canvas = canvasRef.current;
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-          const renderContext = {
-            canvasContext: canvas.getContext('2d'),
-            viewport: viewport,
-          };
-          page.render(renderContext);
-        });
-    },
-    [pdfRef],
-  );
-
+  const viewer = useRef(null);
+  
   useEffect(() => {
-    renderPage(currentPage, pdfRef);
-  }, [pdfRef, currentPage, renderPage]);
+    WebViewer(
+      {
+        path: '/pdflib',
+        initialDoc: props.url,
+        // Those are safe to be exposed as they work only on the domains specified in PDFTron's dashboard
+        licenseKey: window.location.host.includes('czerwoniakplus.pages.dev')
+          ? 'NddW48Vf1XNr0JywBNGR'
+          : '6wkqc5JwlbdXT1GJM02y',
+      },
+      viewer.current,
+    ).then(instance => {
+      // now you can access APIs through the WebViewer instance
+      const {Core} = instance;
 
-  useEffect(() => {
-    const loadingTask = pdfjsLib.getDocument(props.url);
-    loadingTask.promise.then(
-      loadedPdf => {
-        setPdfRef(loadedPdf);
-      },
-      function (reason) {
-        console.error(reason);
-      },
-    );
+      // adding an event listener for when a document is loaded
+      Core.documentViewer.addEventListener('documentLoaded', () => {
+        console.log('document loaded');
+      });
+
+      // adding an event listener for when the page number has changed
+      Core.documentViewer.addEventListener('pageNumberUpdated', pageNumber => {
+        console.log(`Page number is: ${pageNumber}`);
+      });
+    });
   }, [props.url]);
 
-  const canvasStyle = {
-    maxHeight: '100%',
-  };
-
-  return <canvas style={canvasStyle} ref={canvasRef}></canvas>;
+  return <div style={styles.viewer} ref={viewer}></div>;
 };
+
+const styles = StyleSheet.create({
+  viewer: {
+    height: '100%',
+    width: '100%',
+  },
+});

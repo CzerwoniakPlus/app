@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 const appDirectory = path.resolve(__dirname, '../');
 
@@ -94,8 +95,14 @@ module.exports = {
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV === 'development',
     }),
+    new NodePolyfillPlugin(),
     new CopyPlugin({
       patterns: [{from: 'public', to: '.'}],
+    }),
+    new CopyPlugin({
+      patterns: [
+        {from: 'node_modules/@pdftron/pdfjs-express-viewer/public', to: './pdflib'},
+      ],
     }),
   ],
 
