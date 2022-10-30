@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 
 export const PdfViewer = props => {
   const viewer = useRef(null);
-  
+
   useEffect(() => {
     WebViewer(
       {
