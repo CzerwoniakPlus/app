@@ -15,6 +15,20 @@ export const PdfViewer = props => {
         licenseKey: window.location.host.includes('czerwoniakplus.pages.dev')
           ? 'NddW48Vf1XNr0JywBNGR'
           : '6wkqc5JwlbdXT1GJM02y',
+        disabledElements: [
+          'leftPanelButton',
+          'viewControlsButton',
+          'panToolButton',
+          'selectToolButton',
+          'searchButton',
+          'downloadButton',
+          'printButton',
+          'languageButton',
+          'modeButton',
+          'themeChangeButton',
+          'contextMenuPopup',
+        ],
+        enabledElements: ['zoomOutButton', 'zoomInButton'],
       },
       viewer.current,
     ).then(instance => {
