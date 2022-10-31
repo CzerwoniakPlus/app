@@ -19,9 +19,17 @@ export const SchoolLifeScreen = ({navigation}) => {
   const [timetableOpen, setTimetableOpen] = React.useState(false);
   const [timetableValue, setTimetableValue] = React.useState();
   const [selectedTimetable, setSelectedTimetable] = React.useState(null);
+  const [themeState, setThemeState] = React.useState(null);
 
   const theme = useTheme();
   const isFocused = useIsFocused();
+
+  const getTheme = async () => {
+    let themeAS = await AsyncStorage.getItem('theme');
+    if (themeAS != null) {
+      setThemeState(themeAS);
+    }
+  };
 
   const getTimetables = async () => {
     const data = await (
@@ -49,6 +57,7 @@ export const SchoolLifeScreen = ({navigation}) => {
   React.useEffect(() => {
     (async () => {
       if (isFocused) {
+        await getTheme();
         setTimetableOpen(false);
       }
     })();
@@ -74,7 +83,7 @@ export const SchoolLifeScreen = ({navigation}) => {
         {timetablesData ? (
           <View style={styles.flex}>
             <DropdownPicker
-              theme={theme === 'light' ? 'LIGHT' : 'DARK'}
+              theme={themeState === 'light' ? 'LIGHT' : 'DARK'}
               closeOnBackPressed={true}
               style={[
                 {
@@ -111,10 +120,7 @@ export const SchoolLifeScreen = ({navigation}) => {
             />
             {selectedTimetable ? (
               <View style={styles.flex}>
-                <PdfViewer
-                  theme={theme === 'light' ? 'light' : 'dark'}
-                  url={selectedTimetable}
-                />
+                <PdfViewer theme={themeState} url={selectedTimetable} />
               </View>
             ) : null}
           </View>

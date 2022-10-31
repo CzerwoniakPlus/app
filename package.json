@@ -1,6 +1,6 @@
 {
   "name": "czerwoniakplus",
-  "version": "2.1.0-beta.3+thomas22437f",
+  "version": "2.1.0-beta.3+thomas22441a",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

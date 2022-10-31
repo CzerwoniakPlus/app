@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 
 export const PdfViewer = props => {
   const viewer = useRef(null);
+  const instanceRef = useRef(null);
 
   useEffect(() => {
     WebViewer(
@@ -17,22 +18,25 @@ export const PdfViewer = props => {
       },
       viewer.current,
     ).then(instance => {
-      // now you can access APIs through the WebViewer instance
-      const {Core} = instance;
-      instance.UI.setTheme(props.theme);
-      // adding an event listener for when a document is loaded
-      Core.documentViewer.addEventListener('documentLoaded', () => {
-        console.log('document loaded');
-      });
-
-      // adding an event listener for when the page number has changed
-      Core.documentViewer.addEventListener('pageNumberUpdated', pageNumber => {
-        console.log(`Page number is: ${pageNumber}`);
-      });
+      instanceRef.current = instance;
+      instance.UI.setTheme(props.theme === 'light' ? 'light' : 'dark');
     });
-  }, [props.url, props.theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return <div style={styles.viewer} ref={viewer}></div>;
+  useEffect(() => {
+    if (instanceRef.current) {
+      instanceRef.current.UI.setTheme(props.theme);
+    }
+  }, [props.theme]);
+
+  useEffect(() => {
+    if (instanceRef.current) {
+      instanceRef.current.UI.loadDocument(props.url);
+    }
+  }, [props.url]);
+
+  return <div style={styles.viewer} ref={viewer} />;
 };
 
 const styles = StyleSheet.create({
