@@ -1,6 +1,6 @@
 {
   "name": "czerwoniakplus",
-  "version": "2.1.0-beta.3+thomas22416d",
+  "version": "2.1.0-rc1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -26,6 +26,7 @@
     "axios": "^0.27.2",
     "babel-preset-es2015": "^6.24.1",
     "instabug-reactnative": "^11.0.2",
+    "moment": "^2.29.4",
     "react": "18.0.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.69.1",
