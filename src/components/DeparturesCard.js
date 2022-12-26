@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Card, Layout, Text, Icon, useTheme} from '@ui-kitten/components';
 import moment from 'moment';
+import 'moment/locale/pl';
 
 const Header = props => {
   const theme = useTheme();
@@ -34,6 +35,9 @@ export const DeparturesCard = props => {
       } else {
         let result = [];
         for (let i = 0; result.length < 5; i++) {
+          if (!data[i]) {
+            break;
+          }
           if (data[i].line_id === 4) {
             continue;
           }
