@@ -23,10 +23,13 @@ export const PublicTransportScreen = ({navigation}) => {
   const isFocused = useIsFocused();
   const [apiMagazynowaData, setApiMagazynowaData] = React.useState(null);
   const [apiPapiezaData, setApiPapiezaData] = React.useState(null);
+  const [definitions, setDefinitions] = React.useState(null);
   const papiezaApiUrl =
     'https://zkm-api.czerwoniakplus.eu.org/v1/departures/14';
   const magazynowaApiUrl =
     'https://zkm-api.czerwoniakplus.eu.org/v1/departures/7';
+  const definitionsApiUrl =
+    'https://zkm-api.czerwoniakplus.eu.org/v1/definition';
 
   const navigateBack = () => {
     navigation.goBack();
@@ -84,15 +87,34 @@ export const PublicTransportScreen = ({navigation}) => {
     }
   };
 
+  const getDefinitionData = async () => {
+    let data;
+    try {
+      const response = await fetch(definitionsApiUrl);
+      data = await response.json();
+      setDefinitions(data);
+    } catch (error) {
+      data = {
+        error: true,
+        message:
+          'Nie udało się pobrać danych. Sprawdź swoje połączenie z internetem.',
+      };
+    } finally {
+      setDefinitions(data);
+    }
+  };
+
   React.useEffect(() => {
     setRefreshing(true);
     getData();
+    getDefinitionData();
   }, []);
 
   useFocusEffect(
     React.useCallback(() => {
       setRefreshing(true);
       getData();
+      getDefinitionData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFocused]),
   );
@@ -100,6 +122,7 @@ export const PublicTransportScreen = ({navigation}) => {
   React.useEffect(() => {
     setRefreshing(true);
     getData();
+    getDefinitionData();
   }, [isConnected]);
 
   const [isRefreshing, setRefreshing] = React.useState(false);
@@ -133,7 +156,7 @@ export const PublicTransportScreen = ({navigation}) => {
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
         }>
         <Layout style={styles.layout}>
-          <PublicTransportLegendCard />
+          {definitions && <PublicTransportLegendCard data={definitions} />}
           {apiMagazynowaData == null || apiPapiezaData == null ? null : (
             <>
               <DeparturesCard

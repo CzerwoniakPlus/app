@@ -21,13 +21,11 @@ const Header = props => {
   );
 };
 
-const getData = async () => {
-  let result = [];
-  try {
-    const response = await fetch(
-      'https://zkm-api.czerwoniakplus.eu.org/v1/definition',
-    );
-    const data = await response.json();
+const parseData = data => {
+  const result = [];
+  if (data.error) {
+    return <Text>{data.message}</Text>;
+  } else {
     for (let i = 0; i < data.length; i++) {
       result.push(
         <Text key={i}>
@@ -35,27 +33,16 @@ const getData = async () => {
         </Text>,
       );
     }
-  } catch (error) {
-    result.push(
-      <Text key={0}>
-        Nie udało się pobrać danych. Sprawdź swoje połączenie z internetem.
-      </Text>,
-    );
-  } finally {
     return result;
   }
 };
 
 export const PublicTransportLegendCard = props => {
-  const [data, setData] = React.useState(<Text>Ładowanie...</Text>);
-  React.useEffect(() => {
-    getData().then(result => setData(result));
-  }, []);
   return (
     <React.Fragment>
       <Layout style={styles.topContainer} level="1">
         <Card style={styles.card} header={Header}>
-          {data}
+          {parseData(props.data)}
         </Card>
       </Layout>
     </React.Fragment>
