@@ -12,10 +12,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LogBox} from 'react-native';
 import {NetworkProvider} from 'react-native-offline';
 import Instabug, {APM, CrashReporting, Replies} from 'instabug-reactnative';
-import {instabug_key} from '@env';
+import {instabug_key, admob_banner_id} from '@env';
 import {Appearance} from 'react-native';
+import mobileAds, {
+  BannerAd,
+  BannerAdSize,
+  // TestIds,
+} from 'react-native-google-mobile-ads';
 
 export default () => {
+  mobileAds().initialize();
   LogBox.ignoreLogs([
     'You need to specify name or key when calling navigate with an object as the argument',
     'Found screens with the same name nested inside one another',
@@ -77,6 +83,10 @@ export default () => {
           <ApplicationProvider {...eva} theme={eva[theme]}>
             <SafeAreaProvider>
               <AppNavigator />
+              <BannerAd
+                unitId={admob_banner_id}
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+              />
             </SafeAreaProvider>
           </ApplicationProvider>
         </ThemeContext.Provider>
