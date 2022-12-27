@@ -1,4 +1,10 @@
 {
   "name": "CzerwoniakPlus",
-  "displayName": "Czerwoniak+"
+  "displayName": "Czerwoniak+",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "",
+    "ios_app_id": "",
+    "delay_app_measurement_init": true,
+    "user_tracking_usage_description": "Ten identyfikator będzie używany, aby pokazywać Ci spersonalizowane reklamy."
+  }
 }
