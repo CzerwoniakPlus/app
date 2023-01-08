@@ -58,7 +58,7 @@ export const SettingsScreen = ({navigation}) => {
     const result = await check(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
     switch (result) {
       case RESULTS.UNAVAILABLE: {
-        setNotificationsAllowed(false);
+        setNotificationsAllowed(true);
         break;
       }
       case RESULTS.DENIED: {
