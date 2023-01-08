@@ -147,8 +147,8 @@ android {
         applicationId "me.mateusztatko.czerwoniakplus"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 31
-        versionName "2.1.0"
+        versionCode 32
+        versionName "2.1.1-alpha1"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {

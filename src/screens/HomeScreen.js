@@ -25,6 +25,7 @@ import {View} from 'react-native';
 import {firebase} from '@react-native-firebase/messaging';
 import {useIsConnected} from 'react-native-offline';
 import {OfflineNotice} from '../components/OfflineNotice';
+import {requestNotifications} from 'react-native-permissions';
 
 export const HomeScreen = () => {
   const theme = useTheme();
@@ -42,36 +43,47 @@ export const HomeScreen = () => {
       if (!isConnected) {
         return;
       } else {
-        await firebase.messaging().requestPermission();
         await AsyncStorage.setItem('appFirstRun', 'false');
-        firebase
-          .messaging()
-          .subscribeToTopic('luckyNumberV2')
-          .then(async () => {
-            await AsyncStorage.setItem('luckyNumber', 'true').then(() => {
-              console.log(
-                'subscribed to luckyNumber notifications on first run',
+        const {status} = await requestNotifications([
+          'alert',
+          'sound',
+          'badge',
+        ]);
+        if (status === 'granted') {
+          console.log('User granted notifications');
+          firebase
+            .messaging()
+            .subscribeToTopic('luckyNumberV2')
+            .then(async () => {
+              await AsyncStorage.setItem('luckyNumber', 'true').then(() => {
+                console.log(
+                  'subscribed to luckyNumber notifications on first run',
+                );
+              });
+            });
+          firebase
+            .messaging()
+            .subscribeToTopic('announcementsV2')
+            .then(async () => {
+              await AsyncStorage.setItem('announcements', 'true').then(() => {
+                console.log(
+                  'subscribed to announcements notifications on first run',
+                );
+              });
+            });
+          firebase
+            .messaging()
+            .getToken()
+            .then(async token => {
+              await AsyncStorage.setItem('notificationToken', token).then(
+                () => {
+                  console.log('notificationToken saved: ', token);
+                },
               );
             });
-          });
-        firebase
-          .messaging()
-          .subscribeToTopic('announcementsV2')
-          .then(async () => {
-            await AsyncStorage.setItem('announcements', 'true').then(() => {
-              console.log(
-                'subscribed to announcements notifications on first run',
-              );
-            });
-          });
-        firebase
-          .messaging()
-          .getToken()
-          .then(async token => {
-            await AsyncStorage.setItem('notificationToken', token).then(() => {
-              console.log('notificationToken saved: ', token);
-            });
-          });
+        } else {
+          console.log('User denied notifications');
+        }
       }
     }
   };
@@ -147,6 +159,7 @@ export const HomeScreen = () => {
       if (isFocused) {
         await checkAutoRefreshAllowed();
         onRefresh();
+        // console.log(await firebase.messaging().getToken());
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

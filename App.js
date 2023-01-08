@@ -17,7 +17,7 @@ import {Appearance} from 'react-native';
 import mobileAds, {
   BannerAd,
   BannerAdSize,
-  // TestIds,
+  TestIds,
 } from 'react-native-google-mobile-ads';
 
 export default () => {
@@ -84,7 +84,8 @@ export default () => {
             <SafeAreaProvider>
               <AppNavigator />
               <BannerAd
-                unitId={admob_banner_id}
+                // unitId={admob_banner_id}
+                unitId={TestIds.BANNER}
                 size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
               />
             </SafeAreaProvider>
