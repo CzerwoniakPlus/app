@@ -7,10 +7,12 @@ import {
   Icon,
   useTheme,
   Toggle,
+  Button,
 } from '@ui-kitten/components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {firebase} from '@react-native-firebase/messaging';
 import {useIsConnected} from 'react-native-offline';
+import {openSettings} from 'react-native-permissions';
 
 const Header = props => {
   const theme = useTheme();
@@ -32,15 +34,14 @@ const Header = props => {
 };
 
 export const NotificationSettingsCard = props => {
-  const [announcementsEnabled, setannouncementsEnabled] = React.useState(true);
-  const [luckyNumberEnabled, setluckyNumberEnabled] = React.useState(true);
+  const [announcementsEnabled, setannouncementsEnabled] = React.useState(false);
+  const [luckyNumberEnabled, setluckyNumberEnabled] = React.useState(false);
   const isConnected = useIsConnected();
 
   React.useEffect(() => {
     setannouncementsEnabled(props.announcementsEnabled);
     setluckyNumberEnabled(props.luckyNumberEnabled);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected]);
+  }, [props.announcementsEnabled, props.luckyNumberEnabled]);
 
   const toggleAnnouncementsEnabled = async () => {
     const nextAnnouncementsStatus = announcementsEnabled ? 'false' : 'true';
@@ -99,18 +100,38 @@ export const NotificationSettingsCard = props => {
             <Toggle
               checked={announcementsEnabled}
               onChange={toggleAnnouncementsEnabled}
-              disabled={!isConnected}
+              disabled={props.notificationsAllowed === false || !isConnected}
             />
           </Layout>
           <Layout style={[styles.topContainer]} level="1">
             <Text>Szczęśliwy numerek</Text>
             <Toggle
+              key={props.luckyNumberEnabled}
               checked={luckyNumberEnabled}
               onChange={toggleLuckyNumberEnabled}
-              disabled={!isConnected}
+              disabled={props.notificationsAllowed === false || !isConnected}
             />
           </Layout>
-          {!isConnected ? (
+          {props.notificationsAllowed === false ? (
+            <Layout style={[styles.offlineContainer]} level="1">
+              <Text status="warning" style={styles.offlineWarningText}>
+                Aplikacja nie ma dostępu do powiadomień.
+              </Text>
+              <Text status="warning" style={styles.offlineWarningText}>
+                Włącz powiadomienia w ustawieniach systemowych.
+              </Text>
+              <Button
+                onPress={() =>
+                  openSettings().catch(() =>
+                    console.warn('cannot open settings'),
+                  )
+                }
+                status="warning"
+                style={styles.openSettingsButton}>
+                Ustawienia
+              </Button>
+            </Layout>
+          ) : !isConnected ? (
             <Layout style={[styles.offlineContainer]} level="1">
               <Text status="warning" style={styles.offlineWarningText}>
                 Błąd sieci.
@@ -170,5 +191,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     marginLeft: 5,
+  },
+  openSettingsButton: {
+    marginTop: 10,
   },
 });

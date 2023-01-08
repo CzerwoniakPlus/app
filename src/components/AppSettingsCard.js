@@ -57,11 +57,11 @@ export const AppSettingsCard = props => {
     <React.Fragment>
       <Layout style={styles.topContainer} level="1">
         <Card style={styles.card} header={Header}>
-          <Layout style={[styles.topContainer]} level="1">
+          <Layout style={[styles.topContainer, styles.bottomMargin]} level="1">
             <Text>Dark mode </Text>
             <Toggle checked={usingDarkMode} onChange={toggleTheme} />
           </Layout>
-          <Layout style={[styles.topContainer]} level="1">
+          <Layout style={[styles.topContainer, styles.bottomMargin]} level="1">
             <Text>Autoodświeżanie ekranu głównego</Text>
             <Toggle checked={autoRefreshAllowed} onChange={toggleAutoRefresh} />
           </Layout>
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 20,
   },
   card: {
     flex: 1,
@@ -105,5 +104,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     marginLeft: 5,
+  },
+  bottomMargin: {
+    marginBottom: 20,
   },
 });

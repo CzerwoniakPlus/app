@@ -14,27 +14,33 @@ import {useIsConnected} from 'react-native-offline';
 import {NotificationSettingsCard} from '../components/NotificationSettingsCard';
 import {AboutCard} from '../components/AboutCard';
 import {OfflineNotice} from '../components/OfflineNotice';
+import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {useIsFocused, useFocusEffect} from '@react-navigation/native';
 
 export const SettingsScreen = ({navigation}) => {
   const [usingDarkMode, setUsingDarkMode] = React.useState(false);
   const [autoRefreshAllowed, setAutoRefreshAllowed] = React.useState(true);
-  const [announcementsEnabled, setannouncementsEnabled] = React.useState(true);
-  const [luckyNumberEnabled, setluckyNumberEnabled] = React.useState(true);
+  const [announcementsEnabled, setannouncementsEnabled] = React.useState(false);
+  const [luckyNumberEnabled, setluckyNumberEnabled] = React.useState(false);
   const [notificationSlidersEnabled, setnotificationSlidersEnabled] =
     React.useState(true);
   const isConnected = useIsConnected();
+  const isFocused = useIsFocused();
+  const [notificationsAllowed, setNotificationsAllowed] = React.useState(false);
 
-  React.useEffect(() => {
-    const focusHandler = navigation.addListener('focus', () => {
-      getSavedTheme();
-      checkAutoRefreshAllowed();
-      checkAnnouncementsNotificationsEnabled();
-      checkLuckyNumberNotificationsEnabled();
-      checkNotificationSlidersEnabled();
-    });
-    return focusHandler;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigation]);
+  useFocusEffect(
+    React.useCallback(() => {
+      (async () => {
+        getSavedTheme();
+        checkAutoRefreshAllowed();
+        checkNotificationSlidersEnabled();
+        checkAnnouncementsNotificationsEnabled();
+        checkLuckyNumberNotificationsEnabled();
+        checkNotificationsAllowed();
+      })();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isFocused]),
+  );
 
   const getSavedTheme = () => {
     AsyncStorage.getItem('theme')
@@ -46,6 +52,28 @@ export const SettingsScreen = ({navigation}) => {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  const checkNotificationsAllowed = async () => {
+    const result = await check(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
+    switch (result) {
+      case RESULTS.UNAVAILABLE: {
+        setNotificationsAllowed(false);
+        break;
+      }
+      case RESULTS.DENIED: {
+        setNotificationsAllowed(false);
+        break;
+      }
+      case RESULTS.GRANTED: {
+        setNotificationsAllowed(true);
+        break;
+      }
+      case RESULTS.BLOCKED: {
+        setNotificationsAllowed(false);
+        break;
+      }
+    }
   };
 
   const checkAutoRefreshAllowed = () => {
@@ -66,38 +94,16 @@ export const SettingsScreen = ({navigation}) => {
       });
   };
 
-  const checkAnnouncementsNotificationsEnabled = () => {
-    AsyncStorage.getItem('announcements')
-      .then(areAnnouncementsAllowed => {
-        if (areAnnouncementsAllowed != null) {
-          const isTrueSet = areAnnouncementsAllowed === 'true';
-          isTrueSet === true
-            ? setannouncementsEnabled(true)
-            : setannouncementsEnabled(false);
-        } else {
-          setannouncementsEnabled(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  const checkAnnouncementsNotificationsEnabled = async () => {
+    let isAnnouncementsAllowed = await AsyncStorage.getItem('announcements');
+    isAnnouncementsAllowed = isAnnouncementsAllowed === 'true';
+    setannouncementsEnabled(isAnnouncementsAllowed);
   };
 
-  const checkLuckyNumberNotificationsEnabled = () => {
-    AsyncStorage.getItem('luckyNumber')
-      .then(isLuckyNumberAllowed => {
-        if (isLuckyNumberAllowed != null) {
-          const isTrueSet = isLuckyNumberAllowed === 'true';
-          isTrueSet === true
-            ? setluckyNumberEnabled(true)
-            : setluckyNumberEnabled(false);
-        } else {
-          setluckyNumberEnabled(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  const checkLuckyNumberNotificationsEnabled = async () => {
+    let isLuckyNumberAllowed = await AsyncStorage.getItem('luckyNumber');
+    isLuckyNumberAllowed = isLuckyNumberAllowed === 'true';
+    setluckyNumberEnabled(isLuckyNumberAllowed);
   };
 
   const checkNotificationSlidersEnabled = () => {
@@ -138,6 +144,7 @@ export const SettingsScreen = ({navigation}) => {
             announcementsEnabled={announcementsEnabled}
             luckyNumberEnabled={luckyNumberEnabled}
             togglesEnabled={notificationSlidersEnabled}
+            notificationsAllowed={notificationsAllowed}
           />
           <Layout style={styles.spacer} />
         </ScrollView>
